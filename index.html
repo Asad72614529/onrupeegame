@@ -1,82 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rs.1 Game - Official Site</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OnRupee — Prizes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body { margin:0; font-family:'Poppins',sans-serif; background:#f0f2f5; color:#333; }
-    header { background: linear-gradient(135deg,#4CAF50,#2e7d32); color:#fff; padding:50px 20px; text-align:center;}
-    header h1{font-size:2.4rem;margin:0}
-    header p{margin-top:8px;opacity:.95}
-    .container{width:95%;max-width:1100px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-    .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08);transition:transform .25s}
-    .card:hover{transform:translateY(-8px)}
-    .card img{width:100%;height:180px;object-fit:cover;display:block}
-    .card-content{padding:18px;text-align:center}
-    .card-content h3{margin:8px 0;color:#2e7d32}
-    .card-content p{margin:6px 0;color:#444}
-    .btn{display:inline-block;margin-top:12px;padding:11px 22px;background:linear-gradient(135deg,#4CAF50,#2e7d32);color:#fff;border-radius:28px;text-decoration:none;font-weight:600}
-    footer{text-align:center;padding:18px;background:#222;color:#fff;margin-top:28px}
-    @media(max-width:420px){ header h1{font-size:1.6rem} .card img{height:140px} }
+    :root{--accent:#0b5fff;--bg:#f6f8fb;--card:#ffffff}
+    body{font-family:'Inter',system-ui,Segoe UI,Roboto,Arial; margin:0;background:var(--bg);color:#0f172a}
+    .wrap{max-width:1100px;margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    h1{margin:0;font-size:22px}
+    .hero{display:flex;gap:18px;align-items:center;padding:22px;border-radius:12px;background:linear-gradient(90deg,#0b5fff 0%, #1e3a8a 100%);color:#fff}
+    .hero p{margin:6px 0 0}
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .card{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(15,23,42,0.07);text-align:center}
+    .card img{width:100%;height:160px;object-fit:cover;display:block}
+    .card-body{padding:12px}
+    .card h3{margin:8px 0;font-size:18px}
+    .price{color:var(--accent);font-weight:700;margin-top:6px}
+    .small{font-size:13px;color:#555;margin-top:6px}
+    footer{margin-top:22px;font-size:13px;color:#575757;text-align:center}
+    .attrib{font-size:11px;color:#666;margin-top:8px}
+    @media (max-width:520px){ .hero{flex-direction:column;align-items:flex-start} .hero img{width:120px}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Rs.1 Game 🎉</h1>
-    <p>Buy entry, qualify & join the draw — transparent and fair.</p>
-  </header>
+  <div class="wrap">
+    <header>
+      <h1>OnRupee — Prizes</h1>
+      <div>Repo: <strong>onrupeegame</strong></div>
+    </header>
 
-  <div class="container">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=600" alt="Cash Prize">
-      <div class="card-content">
-        <h3>Rs.1000 Cash</h3>
-        <p>Entry Fee: <b>Rs.1</b><br>Draw after <b>1500 entries</b></p>
-        <a href="#" class="btn">Enter Now</a>
+    <section class="hero" aria-label="hero">
+      <div>
+        <h2 style="margin:0 0 6px 0">Entry se draw — prizes</h2>
+        <p style="margin:0">Har prize ke card mein entry fee aur draw condition dikh rahi hai. (Edit kar sakte ho.)</p>
       </div>
-    </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Islamia_College_on_1000_Rupees_note.jpg"
+           alt="PKR 1000 note" style="width:140px;border-radius:8px;object-fit:cover">
+    </section>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=600" alt="Ultra Watch">
-      <div class="card-content">
-        <h3>Ultra Watch</h3>
-        <p>Entry Fee: <b>Rs.2</b><br>Draw after <b>3000 entries</b></p>
-        <a href="#" class="btn">Enter Now</a>
-      </div>
-    </div>
+    <section class="cards" aria-label="prize-cards">
+      <!-- Cash 1K -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Islamia_College_on_1000_Rupees_note.jpg" alt="Cash prize PKR 1000">
+        <div class="card-body">
+          <h3>Cash — PKR 1,000</h3>
+          <div class="price">Entry: PKR 1</div>
+          <div class="small">Draw after 1,500 entries</div>
+          <div class="attrib">Image source: Wikimedia Commons (PKR 1000). </div>
+        </div>
+      </article>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1601944177325-f86a6cbdc9e1?w=600" alt="LED TV">
-      <div class="card-content">
-        <h3>LED TV</h3>
-        <p>Entry Fee: <b>Rs.5</b><br>Draw after <b>5000 entries</b></p>
-        <a href="#" class="btn">Enter Now</a>
-      </div>
-    </div>
+      <!-- Ultra Watch -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Smartwatch-828786.jpg" alt="Smartwatch">
+        <div class="card-body">
+          <h3>Ultra Watch</h3>
+          <div class="price">Entry: PKR 2</div>
+          <div class="small">Draw after 3,000 entries</div>
+          <div class="attrib">Image source: Wikimedia Commons (smartwatch).</div>
+        </div>
+      </article>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600" alt="Vivo Y04">
-      <div class="card-content">
-        <h3>Vivo Y04 Mobile</h3>
-        <p>Entry Fee: <b>Rs.10</b><br>Draw after <b>3500 entries</b></p>
-        <a href="#" class="btn">Enter Now</a>
-      </div>
-    </div>
+      <!-- LED TV -->
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Best_LED_TV_2020.jpg" alt="LED TV">
+        <div class="card-body">
+          <h3>LED TV</h3>
+          <div class="price">Entry: PKR 5</div>
+          <div class="small">Draw after 5,000 entries</div>
+          <div class="attrib">Image source: Wikimedia Commons (LED TV).</div>
+        </div>
+      </article>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600" alt="Motorbike">
-      <div class="card-content">
-        <h3>Motorbike (Cash Payment)</h3>
-        <p>Entry Fee: <b>Rs.50</b><br>Draw after <b>2500 entries</b></p>
-        <a href="#" class="btn">Enter Now</a>
-      </div>
-    </div>
+      <!-- Vivo Y04 -->
+      <article class="card">
+        <img src="https://www.vivoglobal.ph/wp-content/uploads/2025/03/vivo-Y04-kv-img1-mb-x2-scaled.webp" alt="Vivo Y04 phone">
+        <div class="card-body">
+          <h3>Vivo Y04</h3>
+          <div class="price">Entry: PKR 10</div>
+          <div class="small">Draw after 3,500 entries</div>
+          <div class="attrib">Image source: vivo official product page.</div>
+        </div>
+      </article>
+
+      <!-- United 70cc bike -->
+      <article class="card">
+        <img src="https://unitedmotorcycle.com.pk/media/2025/05/Screenshot-2025-05-26-162527-1.png" alt="United 70cc bike">
+        <div class="card-body">
+          <h3>United 70cc (bike payment)</h3>
+          <div class="price">Entry: PKR 50</div>
+          <div class="small">Draw after 2,500 entries — winner receives bike payment.</div>
+          <div class="attrib">Image source: United Auto Industries (official).</div>
+        </div>
+      </article>
+
+    </section>
+
+    <footer>
+      <div>Images: some are from Wikimedia Commons (CC licenses) and some from brand sites — for production use get proper permission or replace with your own photos.</div>
+    </footer>
   </div>
-
-  <footer>
-    <p>© 2025 Rs.1 Game | All Rights Reserved</p>
-  </footer>
 </body>
 </html>
