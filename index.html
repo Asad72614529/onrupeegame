@@ -3,22 +3,95 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>OnRupee</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>OnRupee — Prizes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body{font-family:'Inter',system-ui,Segoe UI,Roboto,Arial;margin:0;background:#f6f8fb;color:#0f172a}
-    .wrap{max-width:1100px;margin:20px auto;padding:15px}
-    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-    .card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(15,23,42,0.07);text-align:center}
-    .card img{width:100%;height:160px;object-fit:cover;display:block}
-    .card-body{padding:12px}
-    .card h3{margin:8px 0;font-size:18px}
-    .price{color:#0b5fff;font-weight:700;margin-top:6px}
-    .small{font-size:13px;color:#555;margin-top:6px}
-    .attrib{font-size:11px;color:#666;margin-top:6px}
+    body{
+      font-family:'Inter',sans-serif;
+      margin:0;
+      background:#f1f5f9;
+      color:#0f172a;
+    }
+    header{
+      background:linear-gradient(90deg,#0b5fff,#1e3a8a);
+      color:#fff;
+      padding:20px;
+      text-align:center;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+    header h1{
+      margin:0;
+      font-size:28px;
+      font-weight:700;
+    }
+    .wrap{
+      max-width:1200px;
+      margin:30px auto;
+      padding:0 15px;
+    }
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:20px;
+    }
+    .card{
+      background:#fff;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 6px 16px rgba(0,0,0,0.08);
+      text-align:center;
+      transition:transform .2s, box-shadow .2s;
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 10px 22px rgba(0,0,0,0.12);
+    }
+    .card img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      display:block;
+    }
+    .card-body{
+      padding:16px;
+    }
+    .card h3{
+      margin:8px 0;
+      font-size:20px;
+      font-weight:600;
+    }
+    .price{
+      color:#0b5fff;
+      font-weight:700;
+      margin-top:6px;
+      font-size:16px;
+    }
+    .small{
+      font-size:14px;
+      color:#555;
+      margin-top:6px;
+    }
+    button{
+      margin-top:12px;
+      padding:10px 18px;
+      border:none;
+      border-radius:8px;
+      background:#0b5fff;
+      color:#fff;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .2s;
+    }
+    button:hover{
+      background:#1e3a8a;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>OnRupee — Prizes</h1>
+  </header>
+
   <div class="wrap">
     <section class="cards">
 
@@ -29,6 +102,7 @@
           <h3>Cash — PKR 1,000</h3>
           <div class="price">Entry: PKR 1</div>
           <div class="small">Draw after 1,500 entries</div>
+          <button>Enter Now</button>
         </div>
       </article>
 
@@ -39,6 +113,7 @@
           <h3>Ultra Watch</h3>
           <div class="price">Entry: PKR 2</div>
           <div class="small">Draw after 3,000 entries</div>
+          <button>Enter Now</button>
         </div>
       </article>
 
@@ -49,6 +124,7 @@
           <h3>LED TV</h3>
           <div class="price">Entry: PKR 5</div>
           <div class="small">Draw after 5,000 entries</div>
+          <button>Enter Now</button>
         </div>
       </article>
 
@@ -59,6 +135,7 @@
           <h3>Vivo Y04</h3>
           <div class="price">Entry: PKR 10</div>
           <div class="small">Draw after 3,500 entries</div>
+          <button>Enter Now</button>
         </div>
       </article>
 
@@ -69,6 +146,7 @@
           <h3>United 70cc</h3>
           <div class="price">Entry: PKR 50</div>
           <div class="small">Draw after 2,500 entries</div>
+          <button>Enter Now</button>
         </div>
       </article>
 
