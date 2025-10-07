@@ -1,97 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rs.1 Game - Official Site</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #f0f2f5;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(135deg, #4CAF50, #2e7d32);
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
-    .container {
-      width: 95%;
-      max-width: 1100px;
-      margin: 40px auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-    }
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .card-content {
-      padding: 20px;
-      text-align: center;
-    }
-    .card-content h3 {
-      margin: 10px 0;
-      color: #4CAF50;
-    }
-    .card-content p {
-      font-size: 0.95rem;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 25px;
-      background: linear-gradient(135deg, #4CAF50, #2e7d32);
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 30px;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: linear-gradient(135deg, #388e3c, #1b5e20);
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #222;
-      color: white;
-      margin-top: 30px;
-    }
+    body { margin:0; font-family:'Poppins',sans-serif; background:#f0f2f5; color:#333; }
+    header { background: linear-gradient(135deg,#4CAF50,#2e7d32); color:#fff; padding:50px 20px; text-align:center;}
+    header h1{font-size:2.4rem;margin:0}
+    header p{margin-top:8px;opacity:.95}
+    .container{width:95%;max-width:1100px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+    .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08);transition:transform .25s}
+    .card:hover{transform:translateY(-8px)}
+    .card img{width:100%;height:180px;object-fit:cover;display:block}
+    .card-content{padding:18px;text-align:center}
+    .card-content h3{margin:8px 0;color:#2e7d32}
+    .card-content p{margin:6px 0;color:#444}
+    .btn{display:inline-block;margin-top:12px;padding:11px 22px;background:linear-gradient(135deg,#4CAF50,#2e7d32);color:#fff;border-radius:28px;text-decoration:none;font-weight:600}
+    footer{text-align:center;padding:18px;background:#222;color:#fff;margin-top:28px}
+    @media(max-width:420px){ header h1{font-size:1.6rem} .card img{height:140px} }
   </style>
 </head>
 <body>
   <header>
     <h1>Rs.1 Game 🎉</h1>
-    <p>Enter with small fee & win exciting big prizes!</p>
+    <p>Buy entry, qualify & join the draw — transparent and fair.</p>
   </header>
 
   <div class="container">
     <div class="card">
-      <img src="https://i.ibb.co/1v2fQZP/cash.jpg" alt="Cash Prize">
+      <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=600" alt="Cash Prize">
       <div class="card-content">
         <h3>Rs.1000 Cash</h3>
         <p>Entry Fee: <b>Rs.1</b><br>Draw after <b>1500 entries</b></p>
@@ -100,7 +39,7 @@
     </div>
 
     <div class="card">
-      <img src="https://i.ibb.co/G3VchzP/watch.jpg" alt="Watch">
+      <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=600" alt="Ultra Watch">
       <div class="card-content">
         <h3>Ultra Watch</h3>
         <p>Entry Fee: <b>Rs.2</b><br>Draw after <b>3000 entries</b></p>
@@ -109,7 +48,7 @@
     </div>
 
     <div class="card">
-      <img src="https://i.ibb.co/Rg7chfJ/tv.jpg" alt="LED TV">
+      <img src="https://images.unsplash.com/photo-1601944177325-f86a6cbdc9e1?w=600" alt="LED TV">
       <div class="card-content">
         <h3>LED TV</h3>
         <p>Entry Fee: <b>Rs.5</b><br>Draw after <b>5000 entries</b></p>
@@ -118,7 +57,7 @@
     </div>
 
     <div class="card">
-      <img src="https://i.ibb.co/7j6MxKn/mobile.jpg" alt="Mobile">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600" alt="Vivo Y04">
       <div class="card-content">
         <h3>Vivo Y04 Mobile</h3>
         <p>Entry Fee: <b>Rs.10</b><br>Draw after <b>3500 entries</b></p>
@@ -127,7 +66,7 @@
     </div>
 
     <div class="card">
-      <img src="https://i.ibb.co/Yj1STnM/bike.jpg" alt="Motorbike">
+      <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600" alt="Motorbike">
       <div class="card-content">
         <h3>Motorbike (Cash Payment)</h3>
         <p>Entry Fee: <b>Rs.50</b><br>Draw after <b>2500 entries</b></p>
