@@ -1,199 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OnRupee Game</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OnRupee — Prize Game</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background-color: #0f172a;
-      color: #fff;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg:#0b1220;
+      --card:#0f1724;
+      --accent1:#00f585;
+      --accent2:#3b82f6;
+      --red:#ff6b6b;
+      --muted:#98a6b3;
     }
-    header {
-      text-align: center;
-      padding: 20px;
-      background: linear-gradient(90deg, #9333ea, #22c55e);
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px #0ff;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .card {
-      background: #1e293b;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
-      transition: 0.3s;
-    }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
-    }
-    .card img {
-      max-width: 100%;
-      height: 160px;
-      object-fit: contain;
-      margin-bottom: 10px;
-    }
-    .card h3 {
-      margin: 10px 0;
-      font-size: 20px;
-      color: #22d3ee;
-    }
-    .card p {
-      margin: 5px 0;
-      font-size: 14px;
-    }
-    .draw-info {
-      color: #ff4444;
-      font-weight: bold;
-    }
-    .card button {
-      margin-top: 10px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 6px;
-      background: linear-gradient(90deg, #22c55e, #0ea5e9);
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 10px #22c55e;
-      transition: 0.3s;
-    }
-    .card button:hover {
-      background: linear-gradient(90deg, #0ea5e9, #22c55e);
-      box-shadow: 0 0 20px #0ea5e9;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(59,130,246,0.06), transparent),
+                  radial-gradient(1000px 500px at 90% 90%, rgba(0,245,133,0.03), transparent),
+                  var(--bg);
+      color:#e6eef8;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:40px;
     }
 
-    /* Entry Form Style */
+    header{
+      background: linear-gradient(90deg, #7c3aed, #06b6d4);
+      padding:22px 16px;
+      text-align:center;
+      box-shadow:0 6px 24px rgba(0,0,0,0.5);
+    }
+    header h1{
+      margin:0;
+      font-family:'Orbitron',sans-serif;
+      font-size:30px;
+      letter-spacing:2px;
+      color:white;
+      text-shadow:0 6px 18px rgba(0,0,0,0.3);
+    }
+    header p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+    .wrap{max-width:1120px;margin:26px auto;padding:0 16px;}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:18px;
+      margin-top:22px;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      border-radius:12px;
+      padding:14px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(2,6,23,0.6);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 18px 40px rgba(11,45,80,0.6);
+    }
+
+    .thumb{
+      height:160px;
+      width:100%;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:12px;
+      border-radius:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
+    }
+    .thumb img{max-width:100%; max-height:100%; object-fit:cover; display:block;}
+
+    h3{margin:8px 0;color:var(--accent1);font-size:18px;font-weight:700}
+    .meta{color:var(--muted);font-size:14px;margin:6px 0}
+
+    .draw{
+      margin-top:8px;
+      font-weight:700;
+      color:var(--red);
+      font-size:14px;
+    }
+    .draw b{color:var(--accent1);}
+
+    .enter-btn{
+      margin-top:12px;
+      padding:10px 16px;
+      border-radius:10px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      color:#071226;
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
+      box-shadow:0 8px 22px rgba(59,130,246,0.12), inset 0 -3px 12px rgba(0,0,0,0.12);
+      letter-spacing:0.6px;
+      transition: transform .14s ease, box-shadow .14s ease;
+    }
+    .enter-btn:active{transform:translateY(2px)}
+
+    /* form */
     #entryForm {
-      display: none;
-      max-width: 400px;
-      margin: 30px auto;
-      padding: 20px;
-      background: #111827;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.7);
+      display:none;
+      max-width:520px;
+      margin:26px auto 40px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      border-radius:12px;
+      padding:18px;
+      box-shadow:0 20px 50px rgba(2,6,23,0.7);
     }
-    #entryForm h2 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #22d3ee;
+    #entryForm h2{margin:0 0 8px;font-family:'Orbitron',sans-serif;color:#fff}
+    .form-row{display:flex;gap:10px}
+    label{display:block;color:var(--muted);font-size:13px;margin-top:10px}
+    input[type="text"], input[type="file"], textarea{
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.04);
+      background:rgba(255,255,255,0.02);
+      color:#e8f2ff;
+      outline:none;
+      font-size:14px;
     }
-    #entryForm label {
-      display: block;
-      margin-top: 10px;
-      font-size: 14px;
-      color: #ddd;
+    .small-note{font-size:13px;color:var(--muted);margin-top:8px}
+    .submit-btn{
+      margin-top:14px;
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      border:none;
+      background:linear-gradient(90deg,var(--accent2),var(--accent1));
+      color:#041026;font-weight:800;
+      cursor:pointer;
+      box-shadow:0 12px 30px rgba(3,145,255,0.12);
+      font-size:15px;
     }
-    #entryForm input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: none;
-    }
-    #entryForm button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      background: linear-gradient(90deg, #22c55e, #0ea5e9);
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 10px #22c55e;
+
+    /* responsive tweaks */
+    @media (max-width:520px){
+      header h1{font-size:20px}
+      .thumb{height:140px}
+      #entryForm{padding:14px}
     }
   </style>
 </head>
 <body>
-  <header>OnRupee — Win Exciting Prizes</header>
-  <div class="container">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1622126663602-87ec8b478590" alt="Cash">
-      <h3>Cash Prize</h3>
-      <p>Entry Fee: Rs. 1</p>
-      <p class="draw-info">🎯 Draw after 1500 entries</p>
-      <button onclick="openForm()">Enter Now</button>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b" alt="Watch">
-      <h3>Ultra Watch</h3>
-      <p>Entry Fee: Rs. 1</p>
-      <p class="draw-info">🎯 Draw after 3000 entries</p>
-      <button onclick="openForm()">Enter Now</button>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1601944179061-5e79a9d37579" alt="TV">
-      <h3>LED TV</h3>
-      <p>Entry Fee: Rs. 1</p>
-      <p class="draw-info">🎯 Draw after 5000 entries</p>
-      <button onclick="openForm()">Enter Now</button>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1606813902911-c6b518d5f6f6" alt="Mobile">
-      <h3>Vivo Y04</h3>
-      <p>Entry Fee: Rs. 1</p>
-      <p class="draw-info">🎯 Draw after 3500 entries</p>
-      <button onclick="openForm()">Enter Now</button>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1592813630413-037fdd2f5c14" alt="Bike">
-      <h3>United 70cc</h3>
-      <p>Entry Fee: Rs. 1</p>
-      <p class="draw-info">🎯 Draw after 2500 entries</p>
-      <button onclick="openForm()">Enter Now</button>
-    </div>
-  </div>
 
-  <!-- Entry Form -->
-  <div id="entryForm">
-    <h2>OnRupee Entry Form</h2>
-    <p><strong>Pay Entry Fee:</strong> Rs. 1</p>
-    <p><strong>EasyPaisa Number:</strong> <span style="color:#0f0;">0300-1234567</span></p>
-    <p><strong>Account Name:</strong> Asad</p>
-    <hr>
-    <label>Full Name</label>
-    <input type="text" id="name" placeholder="Your Name">
-    <label>Mobile Number</label>
-    <input type="text" id="phone" placeholder="03XX-XXXXXXX">
-    <label>Address</label>
-    <input type="text" id="address" placeholder="Your Address">
-    <label>Transaction ID</label>
-    <input type="text" id="txid" placeholder="TXID from EasyPaisa">
-    <label>Upload Screenshot</label>
-    <input type="file" id="screenshot"><br>
-    <button onclick="submitEntry()">Submit Entry</button>
-  </div>
+  <header>
+    <h1>OnRupee — Prize Game</h1>
+    <p>Small entry → Big prizes. Pay via EasyPaisa and upload proof.</p>
+  </header>
+
+  <main class="wrap">
+    <section class="grid">
+
+      <!-- Cash -->
+      <article class="card" data-prize="Cash — PKR 1000" data-fee="1" data-draw="1500">
+        <div class="thumb">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Islamia_College_on_1000_Rupees_note.jpg" alt="PKR 1000 note">
+        </div>
+        <h3>💵 Cash — PKR 1,000</h3>
+        <div class="meta">Entry Fee: <strong>Rs. 1</strong></div>
+        <div class="draw">🎯 Draw after <b>1500</b> entries</div>
+        <button class="enter-btn" onclick="openFormFor(this)">✨ Enter Now</button>
+      </article>
+
+      <!-- Ultra Watch -->
+      <article class="card" data-prize="Ultra Watch" data-fee="2" data-draw="3000">
+        <div class="thumb">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Smartwatch-828786.jpg" alt="Smartwatch">
+        </div>
+        <h3>⌚ Ultra Watch</h3>
+        <div class="meta">Entry Fee: <strong>Rs. 2</strong></div>
+        <div class="draw">🎯 Draw after <b>3000</b> entries</div>
+        <button class="enter-btn" onclick="openFormFor(this)">✨ Enter Now</button>
+      </article>
+
+      <!-- LED TV -->
+      <article class="card" data-prize="LED TV" data-fee="5" data-draw="5000">
+        <div class="thumb">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Best_LED_TV_2020.jpg" alt="LED TV">
+        </div>
+        <h3>📺 LED TV</h3>
+        <div class="meta">Entry Fee: <strong>Rs. 5</strong></div>
+        <div class="draw">🎯 Draw after <b>5000</b> entries</div>
+        <button class="enter-btn" onclick="openFormFor(this)">✨ Enter Now</button>
+      </article>
+
+      <!-- Vivo Mobile -->
+      <article class="card" data-prize="Vivo Y04" data-fee="10" data-draw="3500">
+        <div class="thumb">
+          <img src="https://www.vivoglobal.ph/wp-content/uploads/2025/03/vivo-Y04-kv-img1-mb-x2-scaled.webp" alt="Vivo Y04">
+        </div>
+        <h3>📱 Vivo Y04</h3>
+        <div class="meta">Entry Fee: <strong>Rs. 10</strong></div>
+        <div class="draw">🎯 Draw after <b>3500</b> entries</div>
+        <button class="enter-btn" onclick="openFormFor(this)">✨ Enter Now</button>
+      </article>
+
+      <!-- United 70cc -->
+      <article class="card" data-prize="United 70cc" data-fee="50" data-draw="2500">
+        <div class="thumb">
+          <img src="https://www.unitedmotorcycle.com.pk/wp-content/uploads/2022/08/US-70-2022-Red.png" alt="United 70cc">
+        </div>
+        <h3>🏍️ United 70cc</h3>
+        <div class="meta">Entry Fee: <strong>Rs. 50</strong></div>
+        <div class="draw">🎯 Draw after <b>2500</b> entries</div>
+        <button class="enter-btn" onclick="openFormFor(this)">✨ Enter Now</button>
+      </article>
+
+    </section>
+
+    <!-- Entry Form (below cards) -->
+    <div id="entryForm" aria-hidden="true">
+      <h2>Enter — <span id="selectedPrizeText"></span></h2>
+
+      <p class="small-note"><strong>Pay:</strong> EasyPaisa to <strong>0300-1234567 (Asad)</strong>. Enter TXID or upload screenshot after payment.</p>
+
+      <form id="form" onsubmit="handleSubmit(event)">
+        <input type="hidden" id="prize" name="prize">
+        <label>Full Name</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label>Mobile Number</label>
+        <input type="text" id="mobile" name="mobile" required>
+
+        <label>Address (optional)</label>
+        <input type="text" id="address" name="address">
+
+        <label>EasyPaisa Transaction ID</label>
+        <input type="text" id="txid" name="txid" required>
+
+        <label>Upload Payment Screenshot</label>
+        <input type="file" id="screenshot" name="screenshot" accept="image/*">
+
+        <div class="small-note">After submission admin will verify payment and mark entry as confirmed.</div>
+        <button class="submit-btn" type="submit">Submit Entry</button>
+      </form>
+    </div>
+
+  </main>
 
   <script>
-    function openForm(){
-      document.getElementById('entryForm').style.display = 'block';
-      window.scrollTo(0, document.getElementById('entryForm').offsetTop);
+    // open form for specific card
+    function openFormFor(buttonEl){
+      // find card element
+      const card = buttonEl.closest('.card');
+      const prize = card.getAttribute('data-prize') || '';
+      const fee = card.getAttribute('data-fee') || '';
+      const draw = card.getAttribute('data-draw') || '';
+
+      // populate form
+      document.getElementById('prize').value = prize;
+      document.getElementById('selectedPrizeText').innerText = prize + " — Entry Rs. " + fee + " (Draw at " + draw + ")";
+
+      // show form and scroll
+      const formDiv = document.getElementById('entryForm');
+      formDiv.style.display = 'block';
+      formDiv.setAttribute('aria-hidden','false');
+      formDiv.scrollIntoView({behavior:'smooth', block:'center'});
     }
-    function submitEntry(){
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const address = document.getElementById('address').value;
-      const txid = document.getElementById('txid').value;
-      if(!name || !phone || !address || !txid){
-        alert("⚠️ Please fill all required fields.");
+
+    // submit (currently client-side only; later integrate Firebase)
+    function handleSubmit(e){
+      e.preventDefault();
+      // gather values
+      const prize = document.getElementById('prize').value;
+      const name = document.getElementById('fullname').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const txid = document.getElementById('txid').value.trim();
+      const screenshot = document.getElementById('screenshot').files[0];
+
+      if(!name || !mobile || !txid){
+        alert('⚠️ Please fill required fields (Name, Mobile, TXID).');
         return;
       }
-      alert("✅ Entry submitted successfully! Admin will verify your payment.");
+
+      // Simple local confirmation (replace with Firebase save later)
+      alert('✅ Entry submitted for: ' + prize + '\nName: ' + name + '\nMobile: ' + mobile + '\nTXID: ' + txid + '\nAdmin will verify.');
+
+      // reset form and hide
+      document.getElementById('form').reset();
+      const formDiv = document.getElementById('entryForm');
+      formDiv.style.display = 'none';
+      formDiv.setAttribute('aria-hidden','true');
     }
   </script>
 </body>
