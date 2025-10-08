@@ -7,52 +7,285 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0a0f1f, #1a103d); color: #e6eef8; min-height: 100vh; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
     
-    header { background: linear-gradient(135deg, #7c3aed, #06b6d4); padding: 30px 20px; text-align: center; border-bottom: 3px solid #00f585; }
-    header h1 { font-size: 3rem; font-family: 'Orbitron', sans-serif; color: #fff; text-shadow: 0 0 20px #00f5d4; }
-    header p { margin: 15px 0 0; font-size: 1.2rem; color: #f0f0f0; }
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      background: linear-gradient(135deg, #0a0f1f, #1a103d); 
+      color: #e6eef8; 
+      min-height: 100vh;
+    }
     
-    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    header { 
+      background: linear-gradient(135deg, #7c3aed, #06b6d4); 
+      padding: 30px 20px; 
+      text-align: center; 
+      border-bottom: 3px solid #00f585; 
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
     
-    .card { background: linear-gradient(145deg, #0d1b2a, #1e293b); border-radius: 15px; padding: 0; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.3s ease; border: 2px solid rgba(0, 245, 212, 0.2); }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.7); }
+    header h1 { 
+      font-size: 3rem; 
+      font-family: 'Orbitron', sans-serif; 
+      color: #fff; 
+      text-shadow: 0 0 20px #00f5d4, 0 0 30px #7c3aed;
+    }
     
-    .image-container { height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .card img { width: 100%; height: 100%; object-fit: cover; }
+    header p { 
+      margin: 15px 0 0; 
+      font-size: 1.2rem; 
+      color: #f0f0f0; 
+      font-weight: 500;
+    }
     
-    .card-content { padding: 20px; }
-    .card h3 { margin: 15px 0 8px; font-size: 1.4rem; color: #00f585; font-family: 'Orbitron', sans-serif; }
-    .meta { font-size: 1rem; color: #cbd5e1; margin: 8px 0; }
-    .draw { margin-top: 10px; font-weight: 600; color: #ff6b6b; }
-    .draw b { color: #00f585; }
+    .container { 
+      max-width: 1200px; 
+      margin: 40px auto; 
+      padding: 0 20px; 
+    }
     
-    .enter-btn { margin-top: 15px; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; background: linear-gradient(135deg, #00f585, #3b82f6); color: #000; transition: all 0.3s ease; }
-    .enter-btn:hover { transform: translateY(-2px); }
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 25px; 
+      margin-bottom: 50px;
+    }
     
-    #entryForm { display: none; max-width: 500px; margin: 40px auto; padding: 25px; background: linear-gradient(160deg, #0d1b2a, #1e293b); border-radius: 15px; border: 2px solid #00f585; }
-    #entryForm h2 { text-align: center; color: #00f585; font-family: 'Orbitron', sans-serif; margin-bottom: 15px; }
+    .card { 
+      background: linear-gradient(145deg, #0d1b2a, #1e293b); 
+      border-radius: 15px; 
+      padding: 0; 
+      text-align: center; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+      transition: all 0.3s ease; 
+      border: 2px solid rgba(0, 245, 212, 0.2);
+      overflow: hidden;
+    }
     
-    .form-group { margin-bottom: 15px; }
-    label { display: block; margin-bottom: 5px; color: #aebad4; }
-    input, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #374151; background: #0d1527; color: #fff; }
+    .card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 20px rgba(0, 245, 212, 0.3);
+    }
     
-    .submit-btn { width: 100%; padding: 12px; border: none; border-radius: 8px; background: linear-gradient(135deg, #3b82f6, #00f585); color: #000; font-weight: 700; cursor: pointer; }
+    .image-container { 
+      height: 200px; 
+      background: #1e293b; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      overflow: hidden;
+      position: relative;
+    }
     
-    footer { text-align: center; padding: 30px 20px; color: #94a3b8; background: #0f172a; margin-top: 50px; }
+    .card img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .card-content { 
+      padding: 20px; 
+    }
+    
+    .card h3 { 
+      margin: 15px 0 8px; 
+      font-size: 1.4rem; 
+      color: #00f585; 
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px rgba(0, 245, 133, 0.5);
+    }
+    
+    .meta { 
+      font-size: 1rem; 
+      color: #cbd5e1; 
+      margin: 8px 0; 
+    }
+    
+    .draw { 
+      margin-top: 10px; 
+      font-weight: 600; 
+      color: #ff6b6b; 
+      text-shadow: 0 0 5px rgba(255, 107, 107, 0.3);
+    }
+    
+    .draw b { 
+      color: #00f585; 
+      text-shadow: 0 0 5px rgba(0, 245, 133, 0.5);
+    }
+    
+    .enter-btn { 
+      margin-top: 15px; 
+      padding: 12px 24px; 
+      border: none; 
+      border-radius: 8px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      background: linear-gradient(135deg, #00f585, #3b82f6); 
+      color: #000; 
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    
+    .enter-btn:hover { 
+      transform: translateY(-3px) scale(1.05); 
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Form Overlay Styles */
+    .form-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 998;
+    }
+
+    #entryForm { 
+      display: none; 
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 500px; 
+      width: 90%;
+      padding: 30px; 
+      background: linear-gradient(160deg, #0d1b2a, #1e293b); 
+      border-radius: 15px; 
+      border: 2px solid #00f585;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      z-index: 999;
+      animation: formPopUp 0.3s ease;
+    }
+
+    @keyframes formPopUp {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    #entryForm h2 { 
+      text-align: center; 
+      color: #00f585; 
+      font-family: 'Orbitron', sans-serif; 
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 245, 133, 0.5);
+    }
+    
+    .form-group { 
+      margin-bottom: 15px; 
+    }
+    
+    label { 
+      display: block; 
+      margin-bottom: 5px; 
+      color: #aebad4; 
+      font-weight: 600;
+    }
+    
+    input, textarea { 
+      width: 100%; 
+      padding: 12px; 
+      border-radius: 8px; 
+      border: 1px solid #374151; 
+      background: #0d1527; 
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #00f5d4;
+      box-shadow: 0 0 10px rgba(0, 245, 212, 0.3);
+    }
+    
+    .submit-btn { 
+      width: 100%; 
+      padding: 12px; 
+      border: none; 
+      border-radius: 8px; 
+      background: linear-gradient(135deg, #3b82f6, #00f585); 
+      color: #000; 
+      font-weight: 700; 
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #ff6b6b;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 107, 107, 0.1);
+      transform: scale(1.1);
+    }
+    
+    footer { 
+      text-align: center; 
+      padding: 30px 20px; 
+      color: #94a3b8; 
+      background: #0f172a; 
+      margin-top: 50px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
     
     @media (max-width: 768px) {
-      header h1 { font-size: 2rem; }
-      .grid { grid-template-columns: 1fr; }
+      header h1 { 
+        font-size: 2rem; 
+      }
+      
+      .grid { 
+        grid-template-columns: 1fr; 
+      }
+
+      #entryForm {
+        padding: 25px 20px;
+        width: 95%;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>OnRupee</h1>
+    <h1><i class="fas fa-coins"></i> OnRupee</h1>
     <p>🎯 Choti Entry, Bade Prizes!</p>
   </header>
 
@@ -68,7 +301,9 @@
           <h3>💵 Cash — PKR 1000</h3>
           <div class="meta">Entry Fee: Rs. 1 only</div>
           <div class="draw">🎯 Draw after <b>1500</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">Enter Now</button>
+          <button class="enter-btn" onclick="openFormFor(this)">
+            <i class="fas fa-ticket-alt"></i> Enter Now
+          </button>
         </div>
       </article>
 
@@ -81,7 +316,9 @@
           <h3>⌚ Ultra Smart Watch</h3>
           <div class="meta">Entry Fee: Rs. 2 only</div>
           <div class="draw">🎯 Draw after <b>3000</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">Enter Now</button>
+          <button class="enter-btn" onclick="openFormFor(this)">
+            <i class="fas fa-ticket-alt"></i> Enter Now
+          </button>
         </div>
       </article>
 
@@ -94,20 +331,24 @@
           <h3>📺 LED TV 32"</h3>
           <div class="meta">Entry Fee: Rs. 5 only</div>
           <div class="draw">🎯 Draw after <b>5000</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">Enter Now</button>
+          <button class="enter-btn" onclick="openFormFor(this)">
+            <i class="fas fa-ticket-alt"></i> Enter Now
+          </button>
         </div>
       </article>
 
       <!-- Vivo Y04 -->
       <article class="card" data-prize="Vivo Y04" data-fee="10" data-draw="3500">
         <div class="image-container">
-          <img src="https://i.postimg.cc/V62BCy5p/mobile.png">
+          <img src="https://i.postimg.cc/V62BCy5p/mobile.png" alt="Vivo Y04">
         </div>
         <div class="card-content">
           <h3>📱 Vivo Y04</h3>
           <div class="meta">Entry Fee: Rs. 10 only</div>
           <div class="draw">🎯 Draw after <b>3500</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">Enter Now</button>
+          <button class="enter-btn" onclick="openFormFor(this)">
+            <i class="fas fa-ticket-alt"></i> Enter Now
+          </button>
         </div>
       </article>
 
@@ -120,29 +361,56 @@
           <h3>🏍️ United 70cc</h3>
           <div class="meta">Entry Fee: Rs. 50 only</div>
           <div class="draw">🎯 Draw after <b>2500</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">Enter Now</button>
+          <button class="enter-btn" onclick="openFormFor(this)">
+            <i class="fas fa-ticket-alt"></i> Enter Now
+          </button>
         </div>
       </article>
 
     </section>
 
+    <!-- Form Overlay -->
+    <div class="form-overlay" id="formOverlay"></div>
+
     <!-- Entry Form -->
     <div id="entryForm">
+      <button class="close-btn" onclick="closeForm()">
+        <i class="fas fa-times"></i>
+      </button>
       <h2>Enter Now — <span id="selectedPrizeText"></span></h2>
-      <p>📲 Pay via EasyPaisa → <b>0300-1234567 (Asad Ali)</b></p>
+      <p>📲 Pay via EasyPaisa → <b style="color: #00f585;">0300-1234567 (Asad Ali)</b></p>
       <form onsubmit="handleSubmit(event)">
         <input type="hidden" id="prize" name="prize">
-        <div class="form-group"><label>Full Name</label><input type="text" id="fullname" required></div>
-        <div class="form-group"><label>Mobile</label><input type="text" id="mobile" required></div>
-        <div class="form-group"><label>Address</label><input type="text" id="address"></div>
-        <div class="form-group"><label>Transaction ID</label><input type="text" id="txid" required></div>
-        <div class="form-group"><label>Payment Screenshot</label><input type="file" id="screenshot"></div>
-        <button class="submit-btn" type="submit">Submit Entry</button>
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Full Name</label>
+          <input type="text" id="fullname" required placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-phone"></i> Mobile Number</label>
+          <input type="text" id="mobile" required placeholder="0300-1234567">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-home"></i> Address</label>
+          <input type="text" id="address" placeholder="Enter your complete address">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-receipt"></i> Transaction ID</label>
+          <input type="text" id="txid" required placeholder="Enter EasyPaisa Transaction ID">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-camera"></i> Payment Screenshot</label>
+          <input type="file" id="screenshot" accept="image/*">
+        </div>
+        <button class="submit-btn" type="submit">
+          <i class="fas fa-paper-plane"></i> Submit Entry
+        </button>
       </form>
     </div>
   </main>
 
-  <footer>© 2025 OnRupee. All rights reserved.</footer>
+  <footer>
+    <p>© 2025 OnRupee. All rights reserved. | 📞 0300-1234567</p>
+  </footer>
 
   <script>
     function openFormFor(btn){
@@ -153,16 +421,36 @@
       
       document.getElementById('prize').value = prize;
       document.getElementById('selectedPrizeText').innerText = prize + " — Rs." + fee + " (Draw at " + draw + ")";
+      
+      // Show form as popup - NO SCROLLING
       document.getElementById('entryForm').style.display = 'block';
+      document.getElementById('formOverlay').style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    }
+
+    function closeForm() {
+      document.getElementById('entryForm').style.display = 'none';
+      document.getElementById('formOverlay').style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scroll
     }
 
     function handleSubmit(e){
       e.preventDefault();
       alert("✅ Entry submitted! Admin will verify your payment.");
       e.target.reset();
-      document.getElementById('entryForm').style.display = 'none';
+      closeForm();
     }
+
+    // Close form when clicking overlay
+    document.getElementById('formOverlay').addEventListener('click', closeForm);
+
+    // Close form with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeForm();
+      }
+    });
   </script>
 
 </body>
-</html>
+            </html>
