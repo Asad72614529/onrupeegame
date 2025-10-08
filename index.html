@@ -1,90 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rs.1 Game - Official Site</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OnRupee Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    body { margin:0; font-family:'Poppins',sans-serif; background:#f0f2f5; color:#333; }
-    header { background: linear-gradient(135deg,#4CAF50,#2e7d32); color:#fff; padding:50px 20px; text-align:center;}
-    header h1{font-size:2.4rem;margin:0}
-    header p{margin-top:8px;opacity:.95}
-    .container{width:95%;max-width:1100px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-    .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08);transition:transform .25s}
-    .card:hover{transform:translateY(-8px)}
-    .card img{width:100%;height:180px;object-fit:cover;display:block}
-    .card-content{padding:18px;text-align:center}
-    .card-content h3{margin:8px 0;color:#2e7d32}
-    .card-content p{margin:6px 0;color:#444}
-    .highlight{color:#d32f2f; font-weight:700; margin-top:8px;}
-    .btn{display:inline-block;margin-top:12px;padding:11px 22px;background:linear-gradient(135deg,#4CAF50,#2e7d32);color:#fff;border-radius:28px;text-decoration:none;font-weight:600}
-    footer{text-align:center;padding:18px;background:#222;color:#fff;margin-top:28px}
-    @media(max-width:420px){ header h1{font-size:1.6rem} .card img{height:140px} }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0f172a;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(90deg, #9333ea, #22c55e);
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px #0ff;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
+    }
+    .card img {
+      max-width: 100%;
+      height: 160px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      margin: 10px 0;
+      font-size: 20px;
+      color: #22d3ee;
+    }
+    .card p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    .draw-info {
+      color: #ff4444;
+      font-weight: bold;
+    }
+    .card button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #22c55e, #0ea5e9);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #22c55e;
+      transition: 0.3s;
+    }
+    .card button:hover {
+      background: linear-gradient(90deg, #0ea5e9, #22c55e);
+      box-shadow: 0 0 20px #0ea5e9;
+    }
+
+    /* Entry Form Style */
+    #entryForm {
+      display: none;
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #111827;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.7);
+    }
+    #entryForm h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #22d3ee;
+    }
+    #entryForm label {
+      display: block;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ddd;
+    }
+    #entryForm input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+    }
+    #entryForm button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #22c55e, #0ea5e9);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #22c55e;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Rs.1 Game 🎉</h1>
-    <p>Buy entry, qualify & join the draw — transparent and fair.</p>
-  </header>
-
+  <header>OnRupee — Win Exciting Prizes</header>
   <div class="container">
-
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=600" alt="Cash Prize">
-      <div class="card-content">
-        <h3>Rs.1000 Cash</h3>
-        <p>Entry Fee: <b>Rs.1</b></p>
-        <p class="highlight">🎯 Draw after 1500 entries</p>
-        <a href="#" class="btn">Enter Now</a>
-      </div>
+      <img src="https://images.unsplash.com/photo-1622126663602-87ec8b478590" alt="Cash">
+      <h3>Cash Prize</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p class="draw-info">🎯 Draw after 1500 entries</p>
+      <button onclick="openForm()">Enter Now</button>
     </div>
-
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=600" alt="Ultra Watch">
-      <div class="card-content">
-        <h3>Ultra Watch</h3>
-        <p>Entry Fee: <b>Rs.2</b></p>
-        <p class="highlight">🎯 Draw after 3000 entries</p>
-        <a href="#" class="btn">Enter Now</a>
-      </div>
+      <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b" alt="Watch">
+      <h3>Ultra Watch</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p class="draw-info">🎯 Draw after 3000 entries</p>
+      <button onclick="openForm()">Enter Now</button>
     </div>
-
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1601944177325-f86a6cbdc9e1?w=600" alt="LED TV">
-      <div class="card-content">
-        <h3>LED TV</h3>
-        <p>Entry Fee: <b>Rs.5</b></p>
-        <p class="highlight">🎯 Draw after 5000 entries</p>
-        <a href="#" class="btn">Enter Now</a>
-      </div>
+      <img src="https://images.unsplash.com/photo-1601944179061-5e79a9d37579" alt="TV">
+      <h3>LED TV</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p class="draw-info">🎯 Draw after 5000 entries</p>
+      <button onclick="openForm()">Enter Now</button>
     </div>
-
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600" alt="Vivo Y04">
-      <div class="card-content">
-        <h3>Vivo Y04 Mobile</h3>
-        <p>Entry Fee: <b>Rs.10</b></p>
-        <p class="highlight">🎯 Draw after 3500 entries</p>
-        <a href="#" class="btn">Enter Now</a>
-      </div>
+      <img src="https://images.unsplash.com/photo-1606813902911-c6b518d5f6f6" alt="Mobile">
+      <h3>Vivo Y04</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p class="draw-info">🎯 Draw after 3500 entries</p>
+      <button onclick="openForm()">Enter Now</button>
     </div>
-
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600" alt="Motorbike">
-      <div class="card-content">
-        <h3>Motorbike (Cash Payment)</h3>
-        <p>Entry Fee: <b>Rs.50</b></p>
-        <p class="highlight">🎯 Draw after 2500 entries</p>
-        <a href="#" class="btn">Enter Now</a>
-      </div>
+      <img src="https://images.unsplash.com/photo-1592813630413-037fdd2f5c14" alt="Bike">
+      <h3>United 70cc</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p class="draw-info">🎯 Draw after 2500 entries</p>
+      <button onclick="openForm()">Enter Now</button>
     </div>
-
   </div>
 
-  <footer>
-    <p>© 2025 Rs.1 Game | All Rights Reserved</p>
-  </footer>
+  <!-- Entry Form -->
+  <div id="entryForm">
+    <h2>OnRupee Entry Form</h2>
+    <p><strong>Pay Entry Fee:</strong> Rs. 1</p>
+    <p><strong>EasyPaisa Number:</strong> <span style="color:#0f0;">0300-1234567</span></p>
+    <p><strong>Account Name:</strong> Asad</p>
+    <hr>
+    <label>Full Name</label>
+    <input type="text" id="name" placeholder="Your Name">
+    <label>Mobile Number</label>
+    <input type="text" id="phone" placeholder="03XX-XXXXXXX">
+    <label>Address</label>
+    <input type="text" id="address" placeholder="Your Address">
+    <label>Transaction ID</label>
+    <input type="text" id="txid" placeholder="TXID from EasyPaisa">
+    <label>Upload Screenshot</label>
+    <input type="file" id="screenshot"><br>
+    <button onclick="submitEntry()">Submit Entry</button>
+  </div>
+
+  <script>
+    function openForm(){
+      document.getElementById('entryForm').style.display = 'block';
+      window.scrollTo(0, document.getElementById('entryForm').offsetTop);
+    }
+    function submitEntry(){
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const txid = document.getElementById('txid').value;
+      if(!name || !phone || !address || !txid){
+        alert("⚠️ Please fill all required fields.");
+        return;
+      }
+      alert("✅ Entry submitted successfully! Admin will verify your payment.");
+    }
+  </script>
 </body>
 </html>
