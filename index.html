@@ -1,164 +1,196 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>OnRupee — Prizes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OnRupee Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    body{
-      font-family:'Inter',sans-serif;
-      margin:0;
-      background:#0f172a;
-      color:#f1f5f9;
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0f172a;
+      color: #fff;
+      margin: 0;
+      padding: 0;
     }
-    header{
-      background:linear-gradient(90deg,#7e22ce,#22c55e);
-      color:#fff;
-      padding:25px;
-      text-align:center;
-      box-shadow:0 4px 20px rgba(0,0,0,0.5);
+    header {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(90deg, #9333ea, #22c55e);
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px #0ff;
     }
-    header h1{
-      margin:0;
-      font-size:32px;
-      font-weight:700;
-      font-family:'Orbitron',sans-serif;
-      letter-spacing:2px;
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
     }
-    .wrap{
-      max-width:1200px;
-      margin:30px auto;
-      padding:0 15px;
+    .card {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+      transition: 0.3s;
     }
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-      gap:24px;
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
     }
-    .card{
-      background:#1e293b;
-      border-radius:14px;
-      overflow:hidden;
-      text-align:center;
-      transition:transform .25s, box-shadow .25s;
-      box-shadow:0 0 12px rgba(34,197,94,0.2);
+    .card img {
+      max-width: 100%;
+      height: 160px;
+      object-fit: contain;
+      margin-bottom: 10px;
     }
-    .card:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 0 25px rgba(126,34,206,0.6);
+    .card h3 {
+      margin: 10px 0;
+      font-size: 20px;
+      color: #22d3ee;
     }
-    .card img{
-      width:100%;
-      height:180px;
-      object-fit:cover;
-      display:block;
+    .card p {
+      margin: 5px 0;
+      font-size: 14px;
     }
-    .card-body{
-      padding:16px;
+    .card button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #22c55e, #0ea5e9);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #22c55e;
+      transition: 0.3s;
     }
-    .card h3{
-      margin:10px 0;
-      font-size:20px;
-      font-weight:600;
-      color:#22c55e;
-      font-family:'Orbitron',sans-serif;
+    .card button:hover {
+      background: linear-gradient(90deg, #0ea5e9, #22c55e);
+      box-shadow: 0 0 20px #0ea5e9;
     }
-    .price{
-      color:#38bdf8;
-      font-weight:700;
-      margin-top:6px;
-      font-size:16px;
+
+    /* Entry Form Style */
+    #entryForm {
+      display: none;
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #111827;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.7);
     }
-    .small{
-      font-size:14px;
-      color:#cbd5e1;
-      margin-top:6px;
+    #entryForm h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #22d3ee;
     }
-    button{
-      margin-top:14px;
-      padding:10px 20px;
-      border:none;
-      border-radius:8px;
-      background:linear-gradient(90deg,#06b6d4,#3b82f6);
-      color:#fff;
-      font-weight:600;
-      font-family:'Orbitron',sans-serif;
-      cursor:pointer;
-      transition:all .25s;
-      box-shadow:0 0 12px rgba(59,130,246,0.6);
+    #entryForm label {
+      display: block;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ddd;
     }
-    button:hover{
-      background:linear-gradient(90deg,#3b82f6,#06b6d4);
-      box-shadow:0 0 22px rgba(6,182,212,0.9);
-      transform:scale(1.05);
+    #entryForm input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+    }
+    #entryForm button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #22c55e, #0ea5e9);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #22c55e;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🎮 OnRupee — Prize Game 🎁</h1>
-  </header>
-
-  <div class="wrap">
-    <section class="cards">
-
-      <!-- Cash 1K -->
-      <article class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Islamia_College_on_1000_Rupees_note.jpg" alt="Cash prize PKR 1000">
-        <div class="card-body">
-          <h3>Cash — PKR 1,000</h3>
-          <div class="price">Entry: PKR 1</div>
-          <div class="small">Draw after 1,500 entries</div>
-          <button>Enter Now</button>
-        </div>
-      </article>
-
-      <!-- Ultra Watch -->
-      <article class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Smartwatch-828786.jpg" alt="Smartwatch">
-        <div class="card-body">
-          <h3>Ultra Watch</h3>
-          <div class="price">Entry: PKR 2</div>
-          <div class="small">Draw after 3,000 entries</div>
-          <button>Enter Now</button>
-        </div>
-      </article>
-
-      <!-- LED TV -->
-      <article class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Best_LED_TV_2020.jpg" alt="LED TV">
-        <div class="card-body">
-          <h3>LED TV</h3>
-          <div class="price">Entry: PKR 5</div>
-          <div class="small">Draw after 5,000 entries</div>
-          <button>Enter Now</button>
-        </div>
-      </article>
-
-      <!-- Vivo Y04 -->
-      <article class="card">
-        <img src="https://www.vivoglobal.ph/wp-content/uploads/2025/03/vivo-Y04-kv-img1-mb-x2-scaled.webp" alt="Vivo Y04 phone">
-        <div class="card-body">
-          <h3>Vivo Y04</h3>
-          <div class="price">Entry: PKR 10</div>
-          <div class="small">Draw after 3,500 entries</div>
-          <button>Enter Now</button>
-        </div>
-      </article>
-
-      <!-- United 70cc bike -->
-      <article class="card">
-        <img src="https://unitedmotorcycle.com.pk/media/2025/05/Screenshot-2025-05-26-162527-1.png" alt="United 70cc bike">
-        <div class="card-body">
-          <h3>United 70cc</h3>
-          <div class="price">Entry: PKR 50</div>
-          <div class="small">Draw after 2,500 entries</div>
-          <button>Enter Now</button>
-        </div>
-      </article>
-
-    </section>
+  <header>OnRupee — Win Exciting Prizes</header>
+  <div class="container">
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Pakistani_rupee_notes%2C_2015.jpg/320px-Pakistani_rupee_notes%2C_2015.jpg" alt="Cash">
+      <h3>Cash Prize</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p>Draw: Every 100 entries</p>
+      <button onclick="openForm()">Enter Now</button>
+    </div>
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Smartwatch_icon.png/240px-Smartwatch_icon.png" alt="Watch">
+      <h3>Ultra Watch</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p>Draw: Every 100 entries</p>
+      <button onclick="openForm()">Enter Now</button>
+    </div>
+    <div class="card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Flat_screen_TV.jpg/320px-Flat_screen_TV.jpg" alt="TV">
+      <h3>LED TV</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p>Draw: Every 100 entries</p>
+      <button onclick="openForm()">Enter Now</button>
+    </div>
+    <div class="card">
+      <img src="https://fdn2.gsmarena.com/vv/pics/vivo/vivo-y04-1.jpg" alt="Mobile">
+      <h3>Vivo Y04</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p>Draw: Every 100 entries</p>
+      <button onclick="openForm()">Enter Now</button>
+    </div>
+    <div class="card">
+      <img src="https://www.unitedmotorcycle.com.pk/wp-content/uploads/2022/08/US-70-2022-Red.png" alt="Bike">
+      <h3>United 70cc</h3>
+      <p>Entry Fee: Rs. 1</p>
+      <p>Draw: Every 100 entries</p>
+      <button onclick="openForm()">Enter Now</button>
+    </div>
   </div>
+
+  <!-- Entry Form -->
+  <div id="entryForm">
+    <h2>OnRupee Entry Form</h2>
+    <p><strong>Pay Entry Fee:</strong> Rs. 1</p>
+    <p><strong>EasyPaisa Number:</strong> <span style="color:#0f0;">0300-1234567</span></p>
+    <p><strong>Account Name:</strong> Asad</p>
+    <hr>
+    <label>Full Name</label>
+    <input type="text" id="name" placeholder="Your Name">
+    <label>Mobile Number</label>
+    <input type="text" id="phone" placeholder="03XX-XXXXXXX">
+    <label>Address</label>
+    <input type="text" id="address" placeholder="Your Address">
+    <label>Transaction ID</label>
+    <input type="text" id="txid" placeholder="TXID from EasyPaisa">
+    <label>Upload Screenshot</label>
+    <input type="file" id="screenshot"><br>
+    <button onclick="submitEntry()">Submit Entry</button>
+  </div>
+
+  <script>
+    function openForm(){
+      document.getElementById('entryForm').style.display = 'block';
+      window.scrollTo(0, document.getElementById('entryForm').offsetTop);
+    }
+    function submitEntry(){
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const txid = document.getElementById('txid').value;
+      if(!name || !phone || !address || !txid){
+        alert("⚠️ Please fill all required fields.");
+        return;
+      }
+      alert("✅ Entry submitted successfully! Admin will verify your payment.");
+    }
+  </script>
 </body>
 </html>
