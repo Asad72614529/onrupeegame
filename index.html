@@ -112,6 +112,10 @@
       position: relative;
       overflow: hidden;
       height: 220px;
+      background: linear-gradient(45deg, #1e293b, #374151);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .card img {
@@ -307,6 +311,24 @@
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
+    /* ===== Image Placeholder Styles ===== */
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .image-placeholder i {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: #00f585;
+    }
+
     /* ===== Responsive Design ===== */
     @media (max-width: 768px) {
       header h1 {
@@ -343,7 +365,11 @@
       <!-- Cash Prize -->
       <article class="card" data-prize="Cash — PKR 1000" data-fee="1" data-draw="1500">
         <div class="image-container">
-          <img src="https://i.ibb.co/6n8qy3B/pakistan-1000-rupee-note.jpg" alt="Pakistan 1000 Rupee Note">
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=300&fit=crop" alt="PKR 1000 Cash" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="image-placeholder" style="display: none;">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>PKR 1000 Cash Prize</span>
+          </div>
         </div>
         <div class="card-content">
           <h3>💵 Cash — PKR 1000</h3>
@@ -358,7 +384,11 @@
       <!-- Ultra Smart Watch -->
       <article class="card" data-prize="Ultra Smart Watch" data-fee="2" data-draw="3000">
         <div class="image-container">
-          <img src="https://i.ibb.co/0jqW3yZ/ultra-smart-watch.jpg" alt="Ultra Smart Watch">
+          <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop" alt="Ultra Smart Watch" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="image-placeholder" style="display: none;">
+            <i class="fas fa-clock"></i>
+            <span>Ultra Smart Watch</span>
+          </div>
         </div>
         <div class="card-content">
           <h3>⌚ Ultra Smart Watch</h3>
@@ -373,7 +403,11 @@
       <!-- LED TV -->
       <article class="card" data-prize="LED TV" data-fee="5" data-draw="5000">
         <div class="image-container">
-          <img src="https://i.ibb.co/4ZxLr5n/led-tv.jpg" alt="LED TV">
+          <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop" alt="LED TV" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="image-placeholder" style="display: none;">
+            <i class="fas fa-tv"></i>
+            <span>LED TV</span>
+          </div>
         </div>
         <div class="card-content">
           <h3>📺 LED TV</h3>
@@ -388,7 +422,11 @@
       <!-- Vivo Y04 -->
       <article class="card" data-prize="Vivo Y04" data-fee="10" data-draw="3500">
         <div class="image-container">
-          <img src="https://i.ibb.co/7QdK0yS/vivo-y04.jpg" alt="Vivo Y04">
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Vivo Y04" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="image-placeholder" style="display: none;">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Vivo Y04</span>
+          </div>
         </div>
         <div class="card-content">
           <h3>📱 Vivo Y04</h3>
@@ -403,7 +441,11 @@
       <!-- United 70cc Bike -->
       <article class="card" data-prize="United 70cc" data-fee="50" data-draw="2500">
         <div class="image-container">
-          <img src="https://i.ibb.co/8X5W2yC/united-70cc-red.jpg" alt="United 70cc Red Bike">
+          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop" alt="United 70cc Bike" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="image-placeholder" style="display: none;">
+            <i class="fas fa-motorcycle"></i>
+            <span>United 70cc Bike</span>
+          </div>
         </div>
         <div class="card-content">
           <h3>🏍️ United 70cc</h3>
@@ -496,17 +538,12 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Background animation effect
-    document.addEventListener('mousemove', (e) => {
-      const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      });
+    // Auto-hide form when clicking outside
+    document.addEventListener('click', function(e) {
+      const form = document.getElementById('entryForm');
+      if (form.style.display === 'block' && !form.contains(e.target) && !e.target.classList.contains('enter-btn')) {
+        form.style.display = 'none';
+      }
     });
   </script>
 
