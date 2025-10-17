@@ -20,6 +20,52 @@
       min-height: 100vh;
     }
     
+    /* Navigation */
+    .nav-container {
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      padding: 15px 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+    
+    .nav-btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .nav-btn.active {
+      background: #00f585;
+      color: #000;
+      box-shadow: 0 0 20px rgba(0, 245, 133, 0.5);
+    }
+    
+    .nav-btn:hover {
+      transform: translateY(-2px);
+    }
+    
+    /* Page Container */
+    .page {
+      display: none;
+    }
+    
+    .page.active {
+      display: block;
+    }
+    
     header { 
       background: linear-gradient(135deg, #7c3aed, #06b6d4); 
       padding: 30px 20px; 
@@ -140,6 +186,166 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     }
 
+    /* Lucky Spin Styles */
+    .spin-container {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .payment-info {
+      background: linear-gradient(135deg, #0d1b2a, #1e293b);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      border: 2px solid #00f585;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .payment-info h3 {
+      color: #00f585;
+      margin-bottom: 15px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .spin-fee {
+      font-size: 1.3rem;
+      color: #ff6b6b;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+
+    .win-rate {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-bottom: 15px;
+    }
+
+    .wheel-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 0 auto 30px;
+    }
+
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(
+        #ff6b6b 0deg 60deg,        /* Better Luck */
+        #94a3b8 60deg 120deg,      /* Try Again */
+        #94a3b8 120deg 180deg,     /* Try Again */
+        #94a3b8 180deg 240deg,     /* Try Again */
+        #94a3b8 240deg 300deg,     /* Try Again */
+        #94a3b8 300deg 360deg      /* Try Again */
+      );
+      position: relative;
+      transition: transform 4s cubic-bezier(0.2, 0.8, 0.3, 1);
+      box-shadow: 0 0 30px rgba(0, 245, 212, 0.3);
+      border: 5px solid #00f585;
+    }
+
+    .wheel-pointer {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background: #00f585;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      z-index: 10;
+      box-shadow: 0 0 20px rgba(0, 245, 133, 0.5);
+    }
+
+    .spin-btn {
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00f585, #3b82f6);
+      border: none;
+      border-radius: 25px;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+
+    .spin-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 20px rgba(0, 245, 133, 0.3);
+    }
+
+    .spin-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px currentColor;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .result.win {
+      color: #00f585;
+      border: 2px solid #00f585;
+    }
+
+    .result.lose {
+      color: #ff6b6b;
+      border: 2px solid #ff6b6b;
+    }
+
+    .prizes-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .prize-item {
+      background: rgba(255,255,255,0.1);
+      padding: 15px 10px;
+      border-radius: 10px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border-left: 4px solid;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      background: rgba(255,255,255,0.05);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #00f585;
+      font-family: 'Orbitron', sans-serif;
+    }
+
     /* Form Overlay Styles */
     .form-overlay {
       display: none;
@@ -153,7 +359,7 @@
       z-index: 998;
     }
 
-    #entryForm { 
+    #entryForm, #spinPaymentForm { 
       display: none; 
       position: fixed;
       top: 50%;
@@ -181,7 +387,7 @@
       }
     }
 
-    #entryForm h2 { 
+    #entryForm h2, #spinPaymentForm h2 { 
       text-align: center; 
       color: #00f585; 
       font-family: 'Orbitron', sans-serif; 
@@ -275,144 +481,222 @@
         grid-template-columns: 1fr; 
       }
 
-      #entryForm {
+      #entryForm, #spinPaymentForm {
         padding: 25px 20px;
         width: 95%;
+      }
+
+      .wheel-container {
+        width: 250px;
+        height: 250px;
+      }
+
+      .nav {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .prizes-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats {
+        flex-direction: column;
+        gap: 15px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1><i class="fas fa-coins"></i> OnRupee</h1>
-    <p>🎯 Choti Entry, Bade Prizes!</p>
-  </header>
-
-  <main class="container">
-    <section class="grid">
-
-      <!-- Cash Prize -->
-      <article class="card" data-prize="Cash — PKR 1000" data-fee="1" data-draw="1500">
-        <div class="image-container">
-          <img src="https://i.postimg.cc/mZcbSv6f/cash.jpg" alt="PKR 1000">
-        </div>
-        <div class="card-content">
-          <h3>💵 Cash — PKR 1000</h3>
-          <div class="meta">Entry Fee: Rs. 1 only</div>
-          <div class="draw">🎯 Draw after <b>1500</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">
-            <i class="fas fa-ticket-alt"></i> Enter Now
-          </button>
-        </div>
-      </article>
-
-      <!-- Ultra Smart Watch -->
-      <article class="card" data-prize="Ultra Smart Watch" data-fee="2" data-draw="3000">
-        <div class="image-container">
-          <img src="https://i.postimg.cc/J4D5Mz6F/watch.jpg" alt="Ultra Watch">
-        </div>
-        <div class="card-content">
-          <h3>⌚ Ultra Smart Watch</h3>
-          <div class="meta">Entry Fee: Rs. 2 only</div>
-          <div class="draw">🎯 Draw after <b>3000</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">
-            <i class="fas fa-ticket-alt"></i> Enter Now
-          </button>
-        </div>
-      </article>
-
-      <!-- LED TV -->
-      <article class="card" data-prize="LED TV" data-fee="5" data-draw="5000">
-        <div class="image-container">
-          <img src="https://i.postimg.cc/Bb1P9XSX/lcd.jpg" alt="LED TV">
-        </div>
-        <div class="card-content">
-          <h3>📺 LED TV 32"</h3>
-          <div class="meta">Entry Fee: Rs. 5 only</div>
-          <div class="draw">🎯 Draw after <b>5000</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">
-            <i class="fas fa-ticket-alt"></i> Enter Now
-          </button>
-        </div>
-      </article>
-
-      <!-- Vivo Y04 -->
-      <article class="card" data-prize="Vivo Y04" data-fee="10" data-draw="3500">
-        <div class="image-container">
-          <img src="https://i.postimg.cc/V62BCy5p/mobile.png" alt="Vivo Y04">
-        </div>
-        <div class="card-content">
-          <h3>📱 Vivo Y04</h3>
-          <div class="meta">Entry Fee: Rs. 10 only</div>
-          <div class="draw">🎯 Draw after <b>3500</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">
-            <i class="fas fa-ticket-alt"></i> Enter Now
-          </button>
-        </div>
-      </article>
-
-      <!-- United 70cc Bike -->
-      <article class="card" data-prize="United 70cc" data-fee="50" data-draw="2500">
-        <div class="image-container">
-          <img src="https://i.postimg.cc/fy4mbxr4/bike.png" alt="United 70cc">
-        </div>
-        <div class="card-content">
-          <h3>🏍️ United 70cc</h3>
-          <div class="meta">Entry Fee: Rs. 50 only</div>
-          <div class="draw">🎯 Draw after <b>2500</b> entries</div>
-          <button class="enter-btn" onclick="openFormFor(this)">
-            <i class="fas fa-ticket-alt"></i> Enter Now
-          </button>
-        </div>
-      </article>
-
-    </section>
-
-    <!-- Form Overlay -->
-    <div class="form-overlay" id="formOverlay"></div>
-
-    <!-- Entry Form -->
-    <div id="entryForm">
-      <button class="close-btn" onclick="closeForm()">
-        <i class="fas fa-times"></i>
+  <!-- Navigation -->
+  <div class="nav-container">
+    <div class="nav">
+      <button class="nav-btn active" onclick="showPage('luckyDraw')">
+        <i class="fas fa-gift"></i> Lucky Draw
       </button>
-      <h2>Enter Now — <span id="selectedPrizeText"></span></h2>
-      <p>📲 Pay via EasyPaisa → <b style="color: #00f585;">0300-1234567 (Asad Ali)</b></p>
-      <form onsubmit="handleSubmit(event)">
-        <input type="hidden" id="prize" name="prize">
-        <div class="form-group">
-          <label><i class="fas fa-user"></i> Full Name</label>
-          <input type="text" id="fullname" required placeholder="Enter your full name">
-        </div>
-        <div class="form-group">
-          <label><i class="fas fa-phone"></i> Mobile Number</label>
-          <input type="text" id="mobile" required placeholder="0300-1234567">
-        </div>
-        <div class="form-group">
-          <label><i class="fas fa-home"></i> Address</label>
-          <input type="text" id="address" placeholder="Enter your complete address">
-        </div>
-        <div class="form-group">
-          <label><i class="fas fa-receipt"></i> Transaction ID</label>
-          <input type="text" id="txid" required placeholder="Enter EasyPaisa Transaction ID">
-        </div>
-        <div class="form-group">
-          <label><i class="fas fa-camera"></i> Payment Screenshot</label>
-          <input type="file" id="screenshot" accept="image/*">
-        </div>
-        <button class="submit-btn" type="submit">
-          <i class="fas fa-paper-plane"></i> Submit Entry
-        </button>
-      </form>
+      <button class="nav-btn" onclick="showPage('luckySpin')">
+        <i class="fas fa-sync-alt"></i> Lucky Spin
+      </button>
     </div>
-  </main>
+  </div>
+
+  <!-- Lucky Draw Page -->
+  <div id="luckyDraw" class="page active">
+    <header>
+      <h1><i class="fas fa-gift"></i> OnRupee</h1>
+      <p>🎯 Choti Entry, Bade Prizes!</p>
+    </header>
+
+    <main class="container">
+      <section class="grid">
+        <!-- Your existing cards here -->
+        <article class="card" data-prize="Cash — PKR 1000" data-fee="1" data-draw="1500">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/mZcbSv6f/cash.jpg" alt="PKR 1000">
+          </div>
+          <div class="card-content">
+            <h3>💵 Cash — PKR 1000</h3>
+            <div class="meta">Entry Fee: Rs. 1 only</div>
+            <div class="draw">🎯 Draw after <b>1500</b> entries</div>
+            <button class="enter-btn" onclick="openFormFor(this)">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
+
+        <!-- Other cards... -->
+      </section>
+    </main>
+  </div>
+
+  <!-- Lucky Spin Page -->
+  <div id="luckySpin" class="page">
+    <header>
+      <h1><i class="fas fa-sync-alt"></i> Lucky Spin</h1>
+      <p>🎡 Spin and test your luck! Only 0.1% win rate!</p>
+    </header>
+
+    <main class="container">
+      <div class="spin-container">
+        <div class="payment-info">
+          <h3><i class="fas fa-money-bill-wave"></i> Spin Payment</h3>
+          <div class="spin-fee">🎯 Spin Fee: Rs. 10 per spin</div>
+          <div class="win-rate">📊 Win Rate: Only 0.1% (1 in 1000 spins)</div>
+          <p>Pay via EasyPaisa to spin the wheel and win amazing prizes!</p>
+        </div>
+
+        <div class="wheel-container">
+          <div class="wheel-pointer"></div>
+          <div class="wheel" id="wheel"></div>
+        </div>
+        
+        <button class="spin-btn" onclick="openSpinPayment()" id="spinButton">
+          <i class="fas fa-play"></i> SPIN NOW - Rs. 10
+        </button>
+        
+        <div class="result" id="result">Click SPIN NOW to try your luck!</div>
+
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="totalSpins">0</div>
+            <div>Total Spins</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="wins">0</div>
+            <div>Wins</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="winRate">0%</div>
+            <div>Win Rate</div>
+          </div>
+        </div>
+
+        <div class="prizes-list">
+          <div class="prize-item" style="border-left: 4px solid #ff6b6b;">
+            <strong>₹10,000 Cash</strong>
+            <div style="font-size: 0.8rem; color: #00f585;">Grand Prize</div>
+          </div>
+          <div class="prize-item" style="border-left: 4px solid #94a3b8;">
+            <strong>Better Luck Next Time</strong>
+            <div style="font-size: 0.8rem; color: #94a3b8;">99.9% Chance</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Form Overlays -->
+  <div class="form-overlay" id="formOverlay"></div>
+
+  <!-- Entry Form for Lucky Draw -->
+  <div id="entryForm">
+    <button class="close-btn" onclick="closeForm('entryForm')">
+      <i class="fas fa-times"></i>
+    </button>
+    <h2>Enter Now — <span id="selectedPrizeText"></span></h2>
+    <p>📲 Pay via EasyPaisa → <b style="color: #00f585;">0300-1234567 (Asad Ali)</b></p>
+    <form onsubmit="handleSubmit(event)">
+      <input type="hidden" id="prize" name="prize">
+      <div class="form-group">
+        <label><i class="fas fa-user"></i> Full Name</label>
+        <input type="text" id="fullname" required placeholder="Enter your full name">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-phone"></i> Mobile Number</label>
+        <input type="text" id="mobile" required placeholder="0300-1234567">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-home"></i> Address</label>
+        <input type="text" id="address" placeholder="Enter your complete address">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-receipt"></i> Transaction ID</label>
+        <input type="text" id="txid" required placeholder="Enter EasyPaisa Transaction ID">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-camera"></i> Payment Screenshot</label>
+        <input type="file" id="screenshot" accept="image/*">
+      </div>
+      <button class="submit-btn" type="submit">
+        <i class="fas fa-paper-plane"></i> Submit Entry
+      </button>
+    </form>
+  </div>
+
+  <!-- Spin Payment Form -->
+  <div id="spinPaymentForm">
+    <button class="close-btn" onclick="closeForm('spinPaymentForm')">
+      <i class="fas fa-times"></i>
+    </button>
+    <h2>Pay for Spin — Rs. 10</h2>
+    <p>📲 Pay Rs. 10 via EasyPaisa → <b style="color: #00f585;">0300-1234567 (Asad Ali)</b></p>
+    <form onsubmit="handleSpinPayment(event)">
+      <div class="form-group">
+        <label><i class="fas fa-user"></i> Full Name</label>
+        <input type="text" id="spinFullname" required placeholder="Enter your full name">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-phone"></i> Mobile Number</label>
+        <input type="text" id="spinMobile" required placeholder="0300-1234567">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-receipt"></i> Transaction ID</label>
+        <input type="text" id="spinTxid" required placeholder="Enter EasyPaisa Transaction ID">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-camera"></i> Payment Screenshot</label>
+        <input type="file" id="spinScreenshot" accept="image/*">
+      </div>
+      <button class="submit-btn" type="submit">
+        <i class="fas fa-sync-alt"></i> Confirm & Spin
+      </button>
+    </form>
+  </div>
 
   <footer>
     <p>© 2025 OnRupee. All rights reserved. | 📞 0300-1234567</p>
   </footer>
 
   <script>
+    // Statistics
+    let totalSpins = 0;
+    let totalWins = 0;
+
+    // Page Navigation
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Lucky Draw Functions
     function openFormFor(btn){
       const card = btn.closest('.card');
       const prize = card.dataset.prize;
@@ -422,35 +706,47 @@
       document.getElementById('prize').value = prize;
       document.getElementById('selectedPrizeText').innerText = prize + " — Rs." + fee + " (Draw at " + draw + ")";
       
-      // Show form as popup - NO SCROLLING
       document.getElementById('entryForm').style.display = 'block';
       document.getElementById('formOverlay').style.display = 'block';
-      document.body.style.overflow = 'hidden'; // Prevent background scroll
+      document.body.style.overflow = 'hidden';
     }
 
-    function closeForm() {
-      document.getElementById('entryForm').style.display = 'none';
+    function closeForm(formId) {
+      document.getElementById(formId).style.display = 'none';
       document.getElementById('formOverlay').style.display = 'none';
-      document.body.style.overflow = 'auto'; // Restore scroll
+      document.body.style.overflow = 'auto';
     }
 
     function handleSubmit(e){
       e.preventDefault();
       alert("✅ Entry submitted! Admin will verify your payment.");
       e.target.reset();
-      closeForm();
+      closeForm('entryForm');
     }
 
-    // Close form when clicking overlay
-    document.getElementById('formOverlay').addEventListener('click', closeForm);
+    // Lucky Spin Functions
+    function openSpinPayment() {
+      document.getElementById('spinPaymentForm').style.display = 'block';
+      document.getElementById('formOverlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
 
-    // Close form with Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeForm();
-      }
-    });
-  </script>
+    function handleSpinPayment(e) {
+      e.preventDefault();
+      alert("✅ Payment verified! You can now spin the wheel.");
+      e.target.reset();
+      closeForm('spinPaymentForm');
+      spinWheel();
+    }
 
-</body>
-            </html>
+    function spinWheel() {
+      const spinButton = document.getElementById('spinButton');
+      const result = document.getElementById('result');
+      const wheel = document.getElementById('wheel');
+      
+      spinButton.disabled = true;
+      result.textContent = "Spinning...";
+      result.className = "result";
+
+      // Update statistics
+  
