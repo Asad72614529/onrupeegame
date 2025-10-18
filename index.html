@@ -531,7 +531,8 @@
 
     <main class="container">
       <section class="grid">
-        <!-- Your existing cards here -->
+
+        <!-- Cash Prize -->
         <article class="card" data-prize="Cash — PKR 1000" data-fee="1" data-draw="1500">
           <div class="image-container">
             <img src="https://i.postimg.cc/mZcbSv6f/cash.jpg" alt="PKR 1000">
@@ -546,7 +547,66 @@
           </div>
         </article>
 
-        <!-- Other cards... -->
+        <!-- Ultra Smart Watch -->
+        <article class="card" data-prize="Ultra Smart Watch" data-fee="2" data-draw="3000">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/J4D5Mz6F/watch.jpg" alt="Ultra Watch">
+          </div>
+          <div class="card-content">
+            <h3>⌚ Ultra Smart Watch</h3>
+            <div class="meta">Entry Fee: Rs. 2 only</div>
+            <div class="draw">🎯 Draw after <b>3000</b> entries</div>
+            <button class="enter-btn" onclick="openFormFor(this)">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
+
+        <!-- LED TV -->
+        <article class="card" data-prize="LED TV" data-fee="5" data-draw="5000">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/Bb1P9XSX/lcd.jpg" alt="LED TV">
+          </div>
+          <div class="card-content">
+            <h3>📺 LED TV 32"</h3>
+            <div class="meta">Entry Fee: Rs. 5 only</div>
+            <div class="draw">🎯 Draw after <b>5000</b> entries</div>
+            <button class="enter-btn" onclick="openFormFor(this)">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
+
+        <!-- Vivo Y04 -->
+        <article class="card" data-prize="Vivo Y04" data-fee="10" data-draw="3500">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/V62BCy5p/mobile.png" alt="Vivo Y04">
+          </div>
+          <div class="card-content">
+            <h3>📱 Vivo Y04</h3>
+            <div class="meta">Entry Fee: Rs. 10 only</div>
+            <div class="draw">🎯 Draw after <b>3500</b> entries</div>
+            <button class="enter-btn" onclick="openFormFor(this)">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
+
+        <!-- United 70cc Bike -->
+        <article class="card" data-prize="United 70cc" data-fee="50" data-draw="2500">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/fy4mbxr4/bike.png" alt="United 70cc">
+          </div>
+          <div class="card-content">
+            <h3>🏍️ United 70cc</h3>
+            <div class="meta">Entry Fee: Rs. 50 only</div>
+            <div class="draw">🎯 Draw after <b>2500</b> entries</div>
+            <button class="enter-btn" onclick="openFormFor(this)">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
+
       </section>
     </main>
   </div>
@@ -669,84 +729,3 @@
         <label><i class="fas fa-camera"></i> Payment Screenshot</label>
         <input type="file" id="spinScreenshot" accept="image/*">
       </div>
-      <button class="submit-btn" type="submit">
-        <i class="fas fa-sync-alt"></i> Confirm & Spin
-      </button>
-    </form>
-  </div>
-
-  <footer>
-    <p>© 2025 OnRupee. All rights reserved. | 📞 0300-1234567</p>
-  </footer>
-
-  <script>
-    // Statistics
-    let totalSpins = 0;
-    let totalWins = 0;
-
-    // Page Navigation
-    function showPage(pageId) {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      document.getElementById(pageId).classList.add('active');
-      event.target.classList.add('active');
-    }
-
-    // Lucky Draw Functions
-    function openFormFor(btn){
-      const card = btn.closest('.card');
-      const prize = card.dataset.prize;
-      const fee = card.dataset.fee;
-      const draw = card.dataset.draw;
-      
-      document.getElementById('prize').value = prize;
-      document.getElementById('selectedPrizeText').innerText = prize + " — Rs." + fee + " (Draw at " + draw + ")";
-      
-      document.getElementById('entryForm').style.display = 'block';
-      document.getElementById('formOverlay').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeForm(formId) {
-      document.getElementById(formId).style.display = 'none';
-      document.getElementById('formOverlay').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    function handleSubmit(e){
-      e.preventDefault();
-      alert("✅ Entry submitted! Admin will verify your payment.");
-      e.target.reset();
-      closeForm('entryForm');
-    }
-
-    // Lucky Spin Functions
-    function openSpinPayment() {
-      document.getElementById('spinPaymentForm').style.display = 'block';
-      document.getElementById('formOverlay').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function handleSpinPayment(e) {
-      e.preventDefault();
-      alert("✅ Payment verified! You can now spin the wheel.");
-      e.target.reset();
-      closeForm('spinPaymentForm');
-      spinWheel();
-    }
-
-    function spinWheel() {
-      const spinButton = document.getElementById('spinButton');
-      const result = document.getElementById('result');
-      const wheel = document.getElementById('wheel');
-      
-      spinButton.disabled = true;
-      result.textContent = "Spinning...";
-      result.className = "result";
-
-      // Update statistics
-  
