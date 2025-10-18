@@ -96,7 +96,7 @@
     
     .grid { 
       display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
       gap: 25px; 
       margin-bottom: 50px;
     }
@@ -175,7 +175,8 @@
       border-radius: 8px; 
       font-weight: 700; 
       cursor: pointer; 
-      background: linear-gradient(135deg, #00f585, #3b82f6); 
+      background: linear-gradient(135deg,
+                                  #00f585, #3b82f6); 
       color: #000; 
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -511,7 +512,7 @@
 <body>
 
   <!-- Navigation -->
-  <div class="nav-container">
+   <div class="nav-container">
     <div class="nav">
       <button class="nav-btn active" onclick="showPage('luckyDraw')">
         <i class="fas fa-gift"></i> Lucky Draw
@@ -632,7 +633,8 @@
           <div class="wheel" id="wheel"></div>
         </div>
         
-        <button class="spin-btn" onclick="openSpinPayment()" id="spinButton">
+        <button class="spin-btn"
+          onclick="openSpinPayment()" id="spinButton">
           <i class="fas fa-play"></i> SPIN NOW - Rs. 10
         </button>
         
@@ -729,3 +731,159 @@
         <label><i class="fas fa-camera"></i> Payment Screenshot</label>
         <input type="file" id="spinScreenshot" accept="image/*">
       </div>
+      <button class="submit-btn" type="submit">
+        <i class="fas fa-sync-alt"></i> Confirm & Spin
+      </button>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 OnRupee. All rights reserved. | 📞 0300-1234567</p>
+  </footer>
+
+  <script>
+    // Statistics
+    let totalSpins = 0;
+    let totalWins = 0;
+
+    // Page Navigation - FIXED FUNCTION
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // Remove active class from all buttons
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Show selected page
+      document.getElementById(pageId).classList.add('active');
+      
+      // Activate clicked button
+      const buttons = document.querySelectorAll('.nav-btn');
+      buttons.forEach(btn => {
+        if (btn.textContent.includes(pageId === 'luckyDraw' ? 'Lucky Draw' : 'Lucky Spin')) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    // Lucky Draw Functions
+    function openFormFor(btn){
+      const card = btn.closest('.card');
+      const prize = card.dataset.prize;
+      const fee = card.dataset.fee;
+      const draw = card.dataset.draw;
+      
+      document.getElementById('prize').value = prize;
+      document.getElementById('selectedPrizeText').innerText = prize + " — Rs." + fee + " (Draw at " + draw + ")";
+      
+      document.getElementById('entryForm').style.display = 'block';
+      document.getElementById('formOverlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeForm(formId) {
+      document.getElementById(formId).style.display = 'none';
+      document.getElementById('formOverlay').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function handleSubmit(e){
+      e.preventDefault();
+      alert("✅ Entry submitted! Admin will verify your payment.");
+      e.target.reset();
+      closeForm('entryForm');
+    }
+
+    // Lucky Spin Functions
+    function openSpinPayment() {
+      document.getElementById('spinPaymentForm').style.display = 'block';
+      document.getElementById('formOverlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function handleSpinPayment(e) {
+      e.preventDefault();
+      alert("✅ Payment verified! You can now spin the wheel.");
+      e.target.reset();
+      closeForm('spinPaymentForm');
+      spinWheel();
+    }
+
+    function spinWheel() {
+      const spinButton = document.getElementById('spinButton');
+      const result = document.getElementById('result');
+      const wheel = document.getElementById('wheel');
+      
+      spinButton.disabled = true;
+      result.textContent = "Spinning...";
+      result.className = "result";
+
+      // Update statistics
+      totalSpins++;
+      updateStats();
+
+      // Random rotation
+      const extraRotation =
+        Math.floor(Math.random() * 360);
+      const totalRotation = 1800 + extraRotation;
+      
+      wheel.style.transform = `rotate(${totalRotation}deg)`;
+      
+      setTimeout(() => {
+        // 0.1% win rate - only 1 in 1000 spins wins
+        const isWin = Math.random() < 0.001; // 0.1% chance
+        
+        if (isWin) {
+          totalWins++;
+          updateStats();
+          result.textContent = "🎉 JACKPOT! You won ₹10,000 Cash! 🎉";
+          result.className = "result win";
+        } else {
+          const loseMessages = [
+            "😔 Better Luck Next Time!",
+            "🤞 Try Again!",
+            "🎯 Almost There! Try Again",
+            "💫 Next Time For Sure!",
+            "🌟 Keep Trying!"
+          ];
+          const randomMessage = loseMessages[Math.floor(Math.random() * loseMessages.length)];
+          result.textContent = randomMessage;
+          result.className = "result lose";
+        }
+        
+        spinButton.disabled = false;
+        updateStats();
+        
+      }, 4000);
+    }
+
+    function updateStats() {
+      document.getElementById('totalSpins').textContent = totalSpins;
+      document.getElementById('wins').textContent = totalWins;
+      const winRate = totalSpins > 0 ? ((totalWins / totalSpins) * 100).toFixed(2) : 0;
+      document.getElementById('winRate').textContent = winRate + '%';
+    }
+
+    // Event listeners
+    document.getElementById('formOverlay').addEventListener('click', function() {
+      closeForm('entryForm');
+      closeForm('spinPaymentForm');
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeForm('entryForm');
+        closeForm('spinPaymentForm');
+      }
+    });
+
+    // Initialize stats
+    updateStats();
+  </script>
+
+</body>
+</html>
