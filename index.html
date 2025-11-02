@@ -1,256 +1,192 @@
-      border: none;
-      border-radius: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      background: linear-gradient(135deg, #00f585, #3b82f6);
-      color: #000;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-      transition: all 0.4s ease;
-      font-size: 1.2rem;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid transparent;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OnRupee — Prize Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
     }
-
-    .enter-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.6s;
+    
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      background: linear-gradient(135deg, #0a0f1f, #1a103d); 
+      color: #e6eef8; 
+      min-height: 100vh;
     }
-
-    .enter-btn:hover::before {
-      left: 100%;
-    }
-
-    .enter-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(0, 245, 133, 0.4);
-      border-color: #fff;
-    }
-
-    /* ===== Lucky Spin Styles ===== */
-    .spin-container {
-      text-align: center;
-      padding: 60px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .payment-info {
-      background: linear-gradient(135deg, #0d1b2a, #1e293b);
-      padding: 30px;
-      border-radius: 25px;
-      margin-bottom: 50px;
-      border: 3px solid #00f585;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-    }
-
-    .payment-info h3 {
-      color: #00f585;
-      margin-bottom: 20px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-    }
-
-    .spin-fee {
-      font-size: 1.8rem;
-      color: #ff6b6b;
-      font-weight: 700;
-      margin: 20px 0;
-      text-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
-    }
-
-    .win-rate {
-      font-size: 1.3rem;
-      color: #cbd5e1;
-      margin-bottom: 25px;
-      background: rgba(255,255,255,0.1);
-      padding: 15px;
-      border-radius: 15px;
-      display: inline-block;
-    }
-
-    /* Beautiful Wheel Design */
-    .wheel-section {
-      background: linear-gradient(135deg, #0d1b2a, #1a103d);
-      padding: 50px 30px;
-      border-radius: 30px;
-      border: 4px solid #00f585;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.7);
-      margin-bottom: 50px;
-    }
-
-    .wheel-container {
-      position: relative;
-      width: 400px;
-      height: 400px;
-      margin: 0 auto 50px;
-    }
-
-    .wheel {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: conic-gradient(
-        #ff6b6b 0deg 60deg,        /* ₹10,000 Cash */
-        #00f585 60deg 120deg,      /* Smart Watch */
-        #3b82f6 120deg 180deg,     /* Mobile Phone */
-        #7c3aed 180deg 240deg,     /* LED TV */
-        #06b6d4 240deg 300deg,     /* Bike */
-        #ffd93d 300deg 360deg      /* Try Again */
-      );
-      position: relative;
-      transition: transform 4s cubic-bezier(0.2, 0.8, 0.3, 1);
-      box-shadow: 
-        0 0 60px rgba(0, 245, 212, 0.5),
-        inset 0 0 60px rgba(0,0,0,0.8);
-      border: 10px solid #00f585;
-    }
-
-    .wheel-pointer {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #00f585, #3b82f6);
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      z-index: 10;
-      box-shadow: 0 0 30px rgba(0, 245, 133, 0.8);
-      border: 4px solid white;
-    }
-
-    .wheel-center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
+    
+    /* Navigation */
+    .nav-container {
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
-      border-radius: 50%;
-      border: 6px solid white;
-      box-shadow: 0 0 25px rgba(124, 58, 237, 0.9);
-      z-index: 5;
+      padding: 15px 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     }
-
-    .spin-btn {
-      padding: 20px 60px;
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #00f585, #3b82f6);
+    
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+    
+    .nav-btn {
+      padding: 12px 30px;
       border: none;
-      border-radius: 35px;
-      color: #000;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
-      margin-bottom: 40px;
-      border: 4px solid transparent;
+      backdrop-filter: blur(10px);
     }
-
-    .spin-btn:hover {
-      transform: translateY(-6px) scale(1.08);
-      box-shadow: 0 20px 45px rgba(0,0,0,0.5), 0 0 35px rgba(0, 245, 133, 0.5);
-      border-color: white;
+    
+    .nav-btn.active {
+      background: #00f585;
+      color: #000;
+      box-shadow: 0 0 20px rgba(0, 245, 133, 0.5);
     }
-
-    .spin-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
+    
+    .nav-btn:hover {
+      transform: translateY(-2px);
     }
-
-    .result {
-      margin-top: 40px;
-      font-size: 1.8rem;
+    
+    /* Page Container */
+    .page {
+      display: none;
+    }
+    
+    .page.active {
+      display: block;
+    }
+    
+    header { 
+      background: linear-gradient(135deg, #7c3aed, #06b6d4); 
+      padding: 30px 20px; 
+      text-align: center; 
+      border-bottom: 3px solid #00f585; 
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    
+    header h1 { 
+      font-size: 3rem; 
+      font-family: 'Orbitron', sans-serif; 
+      color: #fff; 
+      text-shadow: 0 0 20px #00f5d4, 0 0 30px #7c3aed;
+    }
+    
+    header p { 
+      margin: 15px 0 0; 
+      font-size: 1.2rem; 
+      color: #f0f0f0; 
+      font-weight: 500;
+    }
+    
+    .container { 
+      max-width: 1200px; 
+      margin: 40px auto; 
+      padding: 0 20px; 
+    }
+    
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 25px; 
+      margin-bottom: 50px;
+    }
+    
+    .card { 
+      background: linear-gradient(145deg, #0d1b2a, #1e293b); 
+      border-radius: 15px; 
+      padding: 0; 
+      text-align: center; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+      transition: all 0.3s ease; 
+      border: 2px solid rgba(0, 245, 212, 0.2);
+      overflow: hidden;
+    }
+    
+    .card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 20px rgba(0, 245, 212, 0.3);
+    }
+    
+    .image-container { 
+      height: 200px; 
+      background: #1e293b; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .card img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .card-content { 
+      padding: 20px; 
+    }
+    
+    .card h3 { 
+      margin: 15px 0 8px; 
+      font-size: 1.4rem; 
+      color: #00f585; 
       font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 20px currentColor;
-      min-height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 25px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(15px);
-      border: 4px solid;
+      text-shadow: 0 0 10px rgba(0, 245, 133, 0.5);
+    }
+    
+    .meta { 
+      font-size: 1rem; 
+      color: #cbd5e1; 
+      margin: 8px 0; 
+    }
+    
+    .draw { 
+      margin-top: 10px; 
+      font-weight: 600; 
+      color: #ff6b6b; 
+      text-shadow: 0 0 5px rgba(255, 107, 107, 0.3);
+    }
+    
+    .draw b { 
+      color: #00f585; 
+      text-shadow: 0 0 5px rgba(0, 245, 133, 0.5);
+    }
+    
+    .enter-btn { 
+      margin-top: 15px; 
+      padding: 12px 24px; 
+      border: none; 
+      border-radius: 8px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      background: linear-gradient(135deg, #00f585, #3b82f6); 
+      color: #000; 
       transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    
+    .enter-btn:hover { 
+      transform: translateY(-3px) scale(1.05); 
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     }
 
-    .result.win {
-      color: #00f585;
-      border-color: #00f585;
-      background: rgba(0, 245, 133, 0.15);
-      box-shadow: 0 0 40px rgba(0, 245, 133, 0.4);
-    }
-
-    .result.lose {
-      color: #ff6b6b;
-      border-color: #ff6b6b;
-      background: rgba(255, 107, 107, 0.15);
-      box-shadow: 0 0 40px rgba(255, 107, 107, 0.4);
-    }
-
-    .prizes-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 25px;
-      margin-top: 50px;
-    }
-
-    .prize-item {
-      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));
-      padding: 25px 20px;
-      border-radius: 20px;
-      text-align: center;
-      backdrop-filter: blur(15px);
-      border-left: 6px solid;
-      border-bottom: 4px solid;
-      transition: all 0.3s ease;
-    }
-
-    .prize-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    }
-
-    .stats {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 40px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      padding: 30px;
-      border-radius: 25px;
-      border: 3px solid rgba(0, 245, 212, 0.4);
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #00f585;
-      font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 15px rgba(0, 245, 133, 0.6);
-    }
-
-    .stat-label {
-      color: #cbd5e1;
-      margin-top: 12px;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    /* ===== Entry Form ===== */
+    /* Form Overlay Styles */
     .form-overlay {
       display: none;
       position: fixed;
@@ -258,32 +194,32 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
       z-index: 998;
     }
 
-    #entryForm {
-      display: none;
+    #entryForm { 
+      display: none; 
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      max-width: 600px;
+      max-width: 500px; 
       width: 90%;
-      padding: 40px;
-      background: linear-gradient(160deg, #0d1b2a, #1a103d);
-      border-radius: 25px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.9);
-      border: 3px solid #00f585;
+      padding: 30px; 
+      background: linear-gradient(160deg, #0d1b2a, #1e293b); 
+      border-radius: 15px; 
+      border: 2px solid #00f585;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
       z-index: 999;
-      animation: formPopUp 0.4s ease;
+      animation: formPopUp 0.3s ease;
     }
 
     @keyframes formPopUp {
       from {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
+        transform: translate(-50%, -50%) scale(0.9);
       }
       to {
         opacity: 1;
@@ -291,92 +227,71 @@
       }
     }
 
-    #entryForm h2 {
-      margin: 0 0 25px;
-      font-size: 2.2rem;
-      font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 15px #00f5d4;
-      text-align: center;
-      background: linear-gradient(45deg, #00f585, #3b82f6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    #entryForm h2 { 
+      text-align: center; 
+      color: #00f585; 
+      font-family: 'Orbitron', sans-serif; 
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 245, 133, 0.5);
     }
-
-    #entryForm p {
-      margin-bottom: 30px;
-      font-size: 1.2rem;
-      color: #cbd5e1;
-      text-align: center;
-      line-height: 1.6;
+    
+    .form-group { 
+      margin-bottom: 15px; 
     }
-
-    .form-group {
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-      color: #aebad4;
+    
+    label { 
+      display: block; 
+      margin-bottom: 5px; 
+      color: #aebad4; 
       font-weight: 600;
     }
-
-    input, textarea {
-      width: 100%;
-      padding: 18px;
-      border-radius: 15px;
-      border: 2px solid #374151;
-      background: rgba(13, 21, 39, 0.8);
+    
+    input, textarea { 
+      width: 100%; 
+      padding: 12px; 
+      border-radius: 8px; 
+      border: 1px solid #374151; 
+      background: #0d1527; 
       color: #fff;
-      font-size: 1.1rem;
       transition: all 0.3s ease;
     }
 
     input:focus, textarea:focus {
       outline: none;
       border-color: #00f5d4;
-      box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
-      transform: translateY(-3px);
-      background: rgba(13, 21, 39, 0.9);
+      box-shadow: 0 0 10px rgba(0, 245, 212, 0.3);
     }
-
-    .submit-btn {
-      margin-top: 30px;
-      width: 100%;
-      padding: 20px;
-      border: none;
-      border-radius: 15px;
-      font-weight: 700;
+    
+    .submit-btn { 
+      width: 100%; 
+      padding: 12px; 
+      border: none; 
+      border-radius: 8px; 
+      background: linear-gradient(135deg, #3b82f6, #00f585); 
+      color: #000; 
+      font-weight: 700; 
       cursor: pointer;
-      background: linear-gradient(135deg, #3b82f6, #00f585);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      color: #000;
-      transition: all 0.4s ease;
-      font-size: 1.2rem;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
     .submit-btn:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 25px rgba(0, 245, 133, 0.3);
-      border-color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     }
 
     .close-btn {
       position: absolute;
-      top: 20px;
-      right: 25px;
+      top: 15px;
+      right: 20px;
       background: none;
       border: none;
       color: #ff6b6b;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       cursor: pointer;
       transition: all 0.3s ease;
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -384,114 +299,50 @@
     }
 
     .close-btn:hover {
-      background: rgba(255, 107, 107, 0.2);
-      transform: scale(1.2);
-      color: #ff4757;
+      background: rgba(255, 107, 107, 0.1);
+      transform: scale(1.1);
     }
-
-    /* ===== Footer ===== */
-    footer {
-      text-align: center;
-      padding: 50px 20px;
-      font-size: 1.1rem;
-      color: #94a3b8;
-      background: linear-gradient(180deg, transparent, #0f172a);
-      margin-top: 100px;
-      border-top: 2px solid rgba(255,255,255,0.1);
+    
+    footer { 
+      text-align: center; 
+      padding: 30px 20px; 
+      color: #94a3b8; 
+      background: #0f172a; 
+      margin-top: 50px;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
-
-    /* ===== Responsive Design ===== */
+    
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2.5rem;
+      header h1 { 
+        font-size: 2rem; 
       }
       
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      
-      .container {
-        margin: 40px auto;
-        padding: 0 20px;
-      }
-      
-      #entryForm {
-        padding: 30px 25px;
-        width: 95%;
-      }
-      
-      .card h3 {
-        font-size: 1.8rem;
-      }
-      
-      .image-container {
-        height: 250px;
+      .grid { 
+        grid-template-columns: 1fr; 
       }
 
-      .wheel-container {
-        width: 300px;
-        height: 300px;
+      #entryForm {
+        padding: 25px 20px;
+        width: 95%;
       }
 
       .nav {
         flex-direction: column;
-        gap: 15px;
-      }
-
-      .prizes-list {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-
-      .stats {
-        flex-direction: column;
-        gap: 25px;
-        padding: 25px;
-      }
-
-      .spin-btn {
-        padding: 18px 45px;
-        font-size: 1.4rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      
-      header p {
-        font-size: 1.1rem;
-      }
-      
-      .card-content {
-        padding: 25px 20px;
-      }
-
-      .wheel-container {
-        width: 250px;
-        height: 250px;
-      }
-
-      .prizes-list {
-        grid-template-columns: 1fr;
+        gap: 10px;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Animated Background -->
-  <div class="bg-animation"></div>
-
   <!-- Navigation -->
   <div class="nav-container">
     <div class="nav">
-      <button class="nav-btn active" onclick="showPage('luckyDraw')">
+      <button class="nav-btn active" id="luckyDrawBtn">
         <i class="fas fa-gift"></i> Lucky Draw
       </button>
-      <button class="nav-btn" onclick="showPage('luckySpin')">
+      <button class="nav-btn" id="luckySpinBtn">
         <i class="fas fa-sync-alt"></i> Lucky Spin
       </button>
     </div>
@@ -500,9 +351,8 @@
   <!-- Lucky Draw Page -->
   <div id="luckyDraw" class="page active">
     <header>
-      <div class="header-glow"></div>
-      <h1><i class="fas fa-gem"></i> OnRupee</h1>
-      <p>🎯 Choti Entry, Bade Prizes! EasyPaisa Pay Karo aur Jeeto!</p>
+      <h1><i class="fas fa-gift"></i> OnRupee</h1>
+      <p>🎯 Choti Entry, Bade Prizes!</p>
     </header>
 
     <main class="container">
@@ -511,13 +361,13 @@
         <!-- Cash Prize -->
         <article class="card" data-prize="Cash — PKR 1000" data-fee="1" data-draw="1500">
           <div class="image-container">
-            <img src="https://i.postimg.cc/mZcbSv6f/cash.jpg" alt="Pakistani 1000 Rupee Note">
+            <img src="https://i.postimg.cc/mZcbSv6f/cash.jpg" alt="PKR 1000">
           </div>
           <div class="card-content">
             <h3>💵 Cash — PKR 1000</h3>
             <div class="meta">Entry Fee: Rs. 1 only</div>
             <div class="draw">🎯 Draw after <b>1500</b> entries</div>
-            <button class="enter-btn" onclick="openFormFor(this)">
+            <button class="enter-btn">
               <i class="fas fa-ticket-alt"></i> Enter Now
             </button>
           </div>
@@ -526,13 +376,13 @@
         <!-- Ultra Smart Watch -->
         <article class="card" data-prize="Ultra Smart Watch" data-fee="2" data-draw="3000">
           <div class="image-container">
-            <img src="https://i.postimg.cc/J4D5Mz6F/watch.jpg" alt="Ultra Smart Watch">
+            <img src="https://i.postimg.cc/J4D5Mz6F/watch.jpg" alt="Ultra Watch">
           </div>
           <div class="card-content">
             <h3>⌚ Ultra Smart Watch</h3>
             <div class="meta">Entry Fee: Rs. 2 only</div>
             <div class="draw">🎯 Draw after <b>3000</b> entries</div>
-            <button class="enter-btn" onclick="openFormFor(this)">
+            <button class="enter-btn">
               <i class="fas fa-ticket-alt"></i> Enter Now
             </button>
           </div>
@@ -547,5 +397,188 @@
             <h3>📺 LED TV 32"</h3>
             <div class="meta">Entry Fee: Rs. 5 only</div>
             <div class="draw">🎯 Draw after <b>5000</b> entries</div>
-            <button class="enter-btn" onclick="openFormFor(this)">
-              <i class="fas fa-ticket-alt"></i
+            <button class="enter-btn">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
+
+        <!-- Vivo Y04 -->
+        <article class="card" data-prize="Vivo Y04" data-fee="10" data-draw="3500">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/V62BCy5p/mobile.png" alt="Vivo Y04">
+          </div>
+          <div class="card-content">
+            <h3>📱 Vivo Y04</h3>
+            <div class="meta">Entry Fee: Rs. 10 only</div>
+            <div class="draw">🎯 Draw after <b>3500</b> entries</div>
+            <button class="enter-btn">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
+
+        <!-- United 70cc Bike -->
+        <article class="card" data-prize="United 70cc" data-fee="50" data-draw="2500">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/fy4mbxr4/bike.png" alt="United 70cc">
+          </div>
+          <div class="card-content">
+            <h3>🏍️ United 70cc</h3>
+            <div class="meta">Entry Fee: Rs. 50 only</div>
+            <div class="draw">🎯 Draw after <b>2500</b> entries</div>
+            <button class="enter-btn">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Form Overlay -->
+      <div class="form-overlay" id="formOverlay"></div>
+
+      <!-- Entry Form -->
+      <div id="entryForm">
+        <button class="close-btn" id="closeFormBtn">
+          <i class="fas fa-times"></i>
+        </button>
+        <h2>Enter Now — <span id="selectedPrizeText"></span></h2>
+        <p>📲 Pay via EasyPaisa → <b style="color: #00f585;">0300-1234567 (Asad Ali)</b></p>
+        <form id="entryFormElement">
+          <input type="hidden" id="prize" name="prize">
+          <div class="form-group">
+            <label><i class="fas fa-user"></i> Full Name</label>
+            <input type="text" id="fullname" required placeholder="Enter your full name">
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-phone"></i> Mobile Number</label>
+            <input type="text" id="mobile" required placeholder="0300-1234567">
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-home"></i> Address</label>
+            <input type="text" id="address" placeholder="Enter your complete address">
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-receipt"></i> Transaction ID</label>
+            <input type="text" id="txid" required placeholder="Enter EasyPaisa Transaction ID">
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-camera"></i> Payment Screenshot</label>
+            <input type="file" id="screenshot" accept="image/*">
+          </div>
+          <button class="submit-btn" type="submit">
+            <i class="fas fa-paper-plane"></i> Submit Entry
+          </button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Lucky Spin Page -->
+  <div id="luckySpin" class="page">
+    <header>
+      <h1><i class="fas fa-sync-alt"></i> Lucky Spin</h1>
+      <p>🎡 Spin and test your luck!</p>
+    </header>
+
+    <main class="container">
+      <div style="text-align: center; padding: 100px 20px;">
+        <h2 style="color: #00f585; margin-bottom: 20px;">Lucky Spin Coming Soon!</h2>
+        <p style="color: #cbd5e1;">We're working on an amazing spin experience for you.</p>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p>© 2025 OnRupee. All rights reserved. | 📞 0300-1234567</p>
+  </footer>
+
+  <script>
+    // Page Navigation - COMPLETELY FIXED
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // Remove active class from all buttons
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Show selected page
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    // Lucky Draw Functions - COMPLETELY FIXED
+    function openFormFor(btn){
+      const card = btn.closest('.card');
+      const prize = card.dataset.prize;
+      const fee = card.dataset.fee;
+      const draw = card.dataset.draw;
+      
+      document.getElementById('prize').value = prize;
+      document.getElementById('selectedPrizeText').innerText = prize + " — Rs." + fee + " (Draw at " + draw + ")";
+      
+      // Show form and overlay
+      document.getElementById('entryForm').style.display = 'block';
+      document.getElementById('formOverlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeForm() {
+      document.getElementById('entryForm').style.display = 'none';
+      document.getElementById('formOverlay').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function handleSubmit(e){
+      e.preventDefault();
+      alert("✅ Entry submitted! Admin will verify your payment.");
+      document.getElementById('entryFormElement').reset();
+      closeForm();
+    }
+
+    // Event Listeners - PROPERLY ADDED
+    document.addEventListener('DOMContentLoaded', function() {
+      // Navigation buttons
+      document.getElementById('luckyDrawBtn').addEventListener('click', function() {
+        showPage('luckyDraw');
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+      });
+      
+      document.getElementById('luckySpinBtn').addEventListener('click', function() {
+        showPage('luckySpin');
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+      });
+
+      // Enter Now buttons
+      document.querySelectorAll('.enter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          openFormFor(this);
+        });
+      });
+
+      // Form close button
+      document.getElementById('closeFormBtn').addEventListener('click', closeForm);
+
+      // Form overlay close
+      document.getElementById('formOverlay').addEventListener('click', closeForm);
+
+      // Form submit
+      document.getElementById('entryFormElement').addEventListener('submit', handleSubmit);
+
+      // Close with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeForm();
+        }
+      });
+    });
+  </script>
+
+</body>
+                         </html>
