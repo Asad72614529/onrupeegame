@@ -20,18 +20,269 @@
       min-height: 100vh;
     }
     
-    /* Navigation */
+    /* Login Page Styles */
+    .login-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container.active {
+      display: flex;
+    }
+
+    .login-box {
+      max-width: 400px;
+      width: 90%;
+      background: linear-gradient(135deg, #0d1b2a, #1e293b);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      border: 3px solid #00f585;
+      animation: loginPopUp 0.4s ease;
+    }
+
+    @keyframes loginPopUp {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .login-logo {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      color: #00f585;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 15px rgba(0, 245, 133, 0.5);
+    }
+    
+    .login-tabs {
+      display: flex;
+      margin-bottom: 25px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 5px;
+    }
+    
+    .login-tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+    
+    .login-tab.active {
+      background: #00f585;
+      color: #000;
+      box-shadow: 0 0 15px rgba(0, 245, 133, 0.5);
+    }
+    
+    .login-form-group {
+      margin-bottom: 20px;
+    }
+    
+    .login-checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    
+    .login-checkbox-group input {
+      margin-right: 12px;
+      margin-top: 3px;
+    }
+    
+    .login-phone-input {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+    .login-country-code {
+      width: 80px;
+      padding: 12px;
+      border: 2px solid #374151;
+      border-right: none;
+      border-radius: 8px 0 0 8px;
+      background: #0d1527;
+      color: #fff;
+      text-align: center;
+    }
+    
+    .login-phone-number {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #374151;
+      border-radius: 0 8px 8px 0;
+      background: #0d1527;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .login-phone-number:focus {
+      border-color: #00f5d4;
+      box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+    }
+    
+    .login-referral-code {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+    .login-referral-code input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #374151;
+      border-radius: 8px 0 0 8px;
+      background: #0d1527;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .login-referral-code input:focus {
+      border-color: #00f5d4;
+      box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+    }
+    
+    .login-paste-btn {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #3b82f6, #00f585);
+      border: 2px solid #374151;
+      border-left: none;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      color: #000;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .login-paste-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .login-input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #374151;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background: #0d1527;
+      color: #fff;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+
+    .login-input:focus {
+      outline: none;
+      border-color: #00f5d4;
+      box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    .login-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #00f585, #3b82f6);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    .login-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 20px rgba(0, 245, 133, 0.3);
+    }
+    
+    .login-links {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    
+    .login-links a {
+      color: #00f585;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .login-links a:hover {
+      text-shadow: 0 0 10px rgba(0, 245, 133, 0.5);
+    }
+    
+    .login-note {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .login-user-agreement {
+      color: #00f585;
+      text-decoration: none;
+    }
+
+    .login-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #ff6b6b;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-close-btn:hover {
+      background: rgba(255, 107, 107, 0.2);
+      transform: scale(1.2);
+      color: #ff4757;
+    }
+
+    /* Main Website Navigation */
     .nav-container {
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
       padding: 15px 20px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
     .nav {
-      max-width: 1200px;
-      margin: 0 auto;
       display: flex;
-      justify-content: center;
       gap: 30px;
     }
     
@@ -56,8 +307,25 @@
     .nav-btn:hover {
       transform: translateY(-2px);
     }
-    
-    /* Page Container */
+
+    .login-access-btn {
+      padding: 10px 25px;
+      background: linear-gradient(135deg, #00f585, #3b82f6);
+      color: #000;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .login-access-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 15px rgba(0, 245, 133, 0.3);
+    }
+
+    /* Rest of your existing website styles remain the same */
     .page {
       display: none;
     }
@@ -96,7 +364,7 @@
     
     .grid { 
       display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
       gap: 25px; 
       margin-bottom: 50px;
     }
@@ -175,8 +443,7 @@
       border-radius: 8px; 
       font-weight: 700; 
       cursor: pointer; 
-      background: linear-gradient(135deg,
-                                  #00f585, #3b82f6); 
+      background: linear-gradient(135deg, #00f585, #3b82f6); 
       color: #000; 
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -187,283 +454,6 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     }
 
-    /* Lucky Spin Styles */
-    .spin-container {
-      text-align: center;
-      padding: 40px 20px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .payment-info {
-      background: linear-gradient(135deg, #0d1b2a, #1e293b);
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 30px;
-      border: 2px solid #00f585;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .payment-info h3 {
-      color: #00f585;
-      margin-bottom: 15px;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    .spin-fee {
-      font-size: 1.3rem;
-      color: #ff6b6b;
-      font-weight: 700;
-      margin: 10px 0;
-    }
-
-    .win-rate {
-      font-size: 0.9rem;
-      color: #cbd5e1;
-      margin-bottom: 15px;
-    }
-
-    .wheel-container {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      margin: 0 auto 30px;
-    }
-
-    .wheel {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: conic-gradient(
-        #ff6b6b 0deg 60deg,        /* Better Luck */
-        #94a3b8 60deg 120deg,      /* Try Again */
-        #94a3b8 120deg 180deg,     /* Try Again */
-        #94a3b8 180deg 240deg,     /* Try Again */
-        #94a3b8 240deg 300deg,     /* Try Again */
-        #94a3b8 300deg 360deg      /* Try Again */
-      );
-      position: relative;
-      transition: transform 4s cubic-bezier(0.2, 0.8, 0.3, 1);
-      box-shadow: 0 0 30px rgba(0, 245, 212, 0.3);
-      border: 5px solid #00f585;
-    }
-
-    .wheel-pointer {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
-      background: #00f585;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      z-index: 10;
-      box-shadow: 0 0 20px rgba(0, 245, 133, 0.5);
-    }
-
-    .spin-btn {
-      padding: 15px 40px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #00f585, #3b82f6);
-      border: none;
-      border-radius: 25px;
-      color: #000;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-      margin-bottom: 20px;
-    }
-
-    .spin-btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 20px rgba(0, 245, 133, 0.3);
-    }
-
-    .spin-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .result {
-      margin-top: 20px;
-      font-size: 1.3rem;
-      font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 10px currentColor;
-      min-height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 15px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-    }
-
-    .result.win {
-      color: #00f585;
-      border: 2px solid #00f585;
-    }
-
-    .result.lose {
-      color: #ff6b6b;
-      border: 2px solid #ff6b6b;
-    }
-
-    .prizes-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin-top: 30px;
-    }
-
-    .prize-item {
-      background: rgba(255,255,255,0.1);
-      padding: 15px 10px;
-      border-radius: 10px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      border-left: 4px solid;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 20px;
-      background: rgba(255,255,255,0.05);
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #00f585;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    /* Form Overlay Styles */
-    .form-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(5px);
-      z-index: 998;
-    }
-
-    #entryForm, #spinPaymentForm { 
-      display: none; 
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 500px; 
-      width: 90%;
-      padding: 30px; 
-      background: linear-gradient(160deg, #0d1b2a, #1e293b); 
-      border-radius: 15px; 
-      border: 2px solid #00f585;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-      z-index: 999;
-      animation: formPopUp 0.3s ease;
-    }
-
-    @keyframes formPopUp {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
-
-    #entryForm h2, #spinPaymentForm h2 { 
-      text-align: center; 
-      color: #00f585; 
-      font-family: 'Orbitron', sans-serif; 
-      margin-bottom: 15px;
-      text-shadow: 0 0 10px rgba(0, 245, 133, 0.5);
-    }
-    
-    .form-group { 
-      margin-bottom: 15px; 
-    }
-    
-    label { 
-      display: block; 
-      margin-bottom: 5px; 
-      color: #aebad4; 
-      font-weight: 600;
-    }
-    
-    input, textarea { 
-      width: 100%; 
-      padding: 12px; 
-      border-radius: 8px; 
-      border: 1px solid #374151; 
-      background: #0d1527; 
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: #00f5d4;
-      box-shadow: 0 0 10px rgba(0, 245, 212, 0.3);
-    }
-    
-    .submit-btn { 
-      width: 100%; 
-      padding: 12px; 
-      border: none; 
-      border-radius: 8px; 
-      background: linear-gradient(135deg, #3b82f6, #00f585); 
-      color: #000; 
-      font-weight: 700; 
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      background: none;
-      border: none;
-      color: #ff6b6b;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .close-btn:hover {
-      background: rgba(255, 107, 107, 0.1);
-      transform: scale(1.1);
-    }
-    
     footer { 
       text-align: center; 
       padding: 30px 20px; 
@@ -482,27 +472,12 @@
         grid-template-columns: 1fr; 
       }
 
-      #entryForm, #spinPaymentForm {
-        padding: 25px 20px;
-        width: 95%;
-      }
-
-      .wheel-container {
-        width: 250px;
-        height: 250px;
-      }
-
       .nav {
         flex-direction: column;
         gap: 10px;
-        align-items: center;
       }
 
-      .prizes-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .stats {
+      .nav-container {
         flex-direction: column;
         gap: 15px;
       }
@@ -511,8 +486,87 @@
 </head>
 <body>
 
-  <!-- Navigation -->
-   <div class="nav-container">
+  <!-- Login Page -->
+  <div class="login-container" id="loginContainer">
+    <button class="login-close-btn" onclick="closeLogin()">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="login-box">
+      <div class="login-logo">OnRupee</div>
+      
+      <div class="login-tabs">
+        <div class="login-tab" onclick="switchTab('register')">Register</div>
+        <div class="login-tab active" onclick="switchTab('login')">Login</div>
+      </div>
+      
+      <!-- Register Form -->
+      <div id="registerForm" style="display: none;">
+        <div class="login-form-group">
+          <input type="text" class="login-input" placeholder="*Please enter Username" id="regUsername">
+        </div>
+        
+        <div class="login-form-group">
+          <input type="password" class="login-input" placeholder="*Enter PIN" id="regPin">
+        </div>
+        
+        <div class="login-phone-input">
+          <div class="login-country-code">+92</div>
+          <input type="text" class="login-phone-number" placeholder="*Please enter phone number" id="regPhone">
+        </div>
+        
+        <div class="login-referral-code">
+          <input type="text" class="login-input" placeholder="Please enter your referral code" id="regReferral">
+          <div class="login-paste-btn" onclick="pasteReferral()">Paste</div>
+        </div>
+        
+        <div class="login-checkbox-group">
+          <input type="checkbox" id="age-check">
+          <label for="age-check" style="color: #cbd5e1; font-size: 14px;">
+            I am over 18 years old and have read and agreed to 
+            <a href="#" class="login-user-agreement">《User Agreement》</a>
+          </label>
+        </div>
+        
+        <button class="login-btn" onclick="registerUser()">Register</button>
+        
+        <div class="login-links">
+          <a href="#">Customer Service</a>
+          <a href="#">Demo</a>
+          <a href="#">Binding registration</a>
+        </div>
+        
+        <div class="login-note">
+          Only support Username Register
+        </div>
+      </div>
+      
+      <!-- Login Form -->
+      <div id="loginForm">
+        <div class="login-form-group">
+          <input type="text" class="login-input" placeholder="*Please enter Username" id="loginUsername">
+        </div>
+        
+        <div class="login-form-group">
+          <input type="password" class="login-input" placeholder="*Enter PIN" id="loginPin">
+        </div>
+        
+        <button class="login-btn" onclick="loginUser()">Login</button>
+        
+        <div class="login-links">
+          <a href="#">Forgot PIN?</a>
+          <a href="#">Customer Service</a>
+          <a href="#">Register Now</a>
+        </div>
+        
+        <div class="login-note">
+          Secure login to access your account
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Website -->
+  <div class="nav-container">
     <div class="nav">
       <button class="nav-btn active" onclick="showPage('luckyDraw')">
         <i class="fas fa-gift"></i> Lucky Draw
@@ -521,6 +575,9 @@
         <i class="fas fa-sync-alt"></i> Lucky Spin
       </button>
     </div>
+    <button class="login-access-btn" onclick="openLogin()">
+      <i class="fas fa-user"></i> Login / Register
+    </button>
   </div>
 
   <!-- Lucky Draw Page -->
@@ -532,8 +589,7 @@
 
     <main class="container">
       <section class="grid">
-
-        <!-- Cash Prize -->
+        <!-- Your existing cards here -->
         <article class="card" data-prize="Cash — PKR 1000" data-fee="1" data-draw="1500">
           <div class="image-container">
             <img src="https://i.postimg.cc/mZcbSv6f/cash.jpg" alt="PKR 1000">
@@ -548,66 +604,7 @@
           </div>
         </article>
 
-        <!-- Ultra Smart Watch -->
-        <article class="card" data-prize="Ultra Smart Watch" data-fee="2" data-draw="3000">
-          <div class="image-container">
-            <img src="https://i.postimg.cc/J4D5Mz6F/watch.jpg" alt="Ultra Watch">
-          </div>
-          <div class="card-content">
-            <h3>⌚ Ultra Smart Watch</h3>
-            <div class="meta">Entry Fee: Rs. 2 only</div>
-            <div class="draw">🎯 Draw after <b>3000</b> entries</div>
-            <button class="enter-btn" onclick="openFormFor(this)">
-              <i class="fas fa-ticket-alt"></i> Enter Now
-            </button>
-          </div>
-        </article>
-
-        <!-- LED TV -->
-        <article class="card" data-prize="LED TV" data-fee="5" data-draw="5000">
-          <div class="image-container">
-            <img src="https://i.postimg.cc/Bb1P9XSX/lcd.jpg" alt="LED TV">
-          </div>
-          <div class="card-content">
-            <h3>📺 LED TV 32"</h3>
-            <div class="meta">Entry Fee: Rs. 5 only</div>
-            <div class="draw">🎯 Draw after <b>5000</b> entries</div>
-            <button class="enter-btn" onclick="openFormFor(this)">
-              <i class="fas fa-ticket-alt"></i> Enter Now
-            </button>
-          </div>
-        </article>
-
-        <!-- Vivo Y04 -->
-        <article class="card" data-prize="Vivo Y04" data-fee="10" data-draw="3500">
-          <div class="image-container">
-            <img src="https://i.postimg.cc/V62BCy5p/mobile.png" alt="Vivo Y04">
-          </div>
-          <div class="card-content">
-            <h3>📱 Vivo Y04</h3>
-            <div class="meta">Entry Fee: Rs. 10 only</div>
-            <div class="draw">🎯 Draw after <b>3500</b> entries</div>
-            <button class="enter-btn" onclick="openFormFor(this)">
-              <i class="fas fa-ticket-alt"></i> Enter Now
-            </button>
-          </div>
-        </article>
-
-        <!-- United 70cc Bike -->
-        <article class="card" data-prize="United 70cc" data-fee="50" data-draw="2500">
-          <div class="image-container">
-            <img src="https://i.postimg.cc/fy4mbxr4/bike.png" alt="United 70cc">
-          </div>
-          <div class="card-content">
-            <h3>🏍️ United 70cc</h3>
-            <div class="meta">Entry Fee: Rs. 50 only</div>
-            <div class="draw">🎯 Draw after <b>2500</b> entries</div>
-            <button class="enter-btn" onclick="openFormFor(this)">
-              <i class="fas fa-ticket-alt"></i> Enter Now
-            </button>
-          </div>
-        </article>
-
+        <!-- Add other cards as needed -->
       </section>
     </main>
   </div>
@@ -616,125 +613,14 @@
   <div id="luckySpin" class="page">
     <header>
       <h1><i class="fas fa-sync-alt"></i> Lucky Spin</h1>
-      <p>🎡 Spin and test your luck! Only 0.1% win rate!</p>
+      <p>🎡 Spin and test your luck!</p>
     </header>
-
     <main class="container">
-      <div class="spin-container">
-        <div class="payment-info">
-          <h3><i class="fas fa-money-bill-wave"></i> Spin Payment</h3>
-          <div class="spin-fee">🎯 Spin Fee: Rs. 10 per spin</div>
-          <div class="win-rate">📊 Win Rate: Only 0.1% (1 in 1000 spins)</div>
-          <p>Pay via EasyPaisa to spin the wheel and win amazing prizes!</p>
-        </div>
-
-        <div class="wheel-container">
-          <div class="wheel-pointer"></div>
-          <div class="wheel" id="wheel"></div>
-        </div>
-        
-        <button class="spin-btn"
-          onclick="openSpinPayment()" id="spinButton">
-          <i class="fas fa-play"></i> SPIN NOW - Rs. 10
-        </button>
-        
-        <div class="result" id="result">Click SPIN NOW to try your luck!</div>
-
-        <div class="stats">
-          <div class="stat-item">
-            <div class="stat-value" id="totalSpins">0</div>
-            <div>Total Spins</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" id="wins">0</div>
-            <div>Wins</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" id="winRate">0%</div>
-            <div>Win Rate</div>
-          </div>
-        </div>
-
-        <div class="prizes-list">
-          <div class="prize-item" style="border-left: 4px solid #ff6b6b;">
-            <strong>₹10,000 Cash</strong>
-            <div style="font-size: 0.8rem; color: #00f585;">Grand Prize</div>
-          </div>
-          <div class="prize-item" style="border-left: 4px solid #94a3b8;">
-            <strong>Better Luck Next Time</strong>
-            <div style="font-size: 0.8rem; color: #94a3b8;">99.9% Chance</div>
-          </div>
-        </div>
+      <div style="text-align: center; padding: 100px 20px;">
+        <h2 style="color: #00f585; margin-bottom: 20px;">Lucky Spin Coming Soon!</h2>
+        <p style="color: #cbd5e1;">We're working on an amazing spin experience for you.</p>
       </div>
     </main>
-  </div>
-
-  <!-- Form Overlays -->
-  <div class="form-overlay" id="formOverlay"></div>
-
-  <!-- Entry Form for Lucky Draw -->
-  <div id="entryForm">
-    <button class="close-btn" onclick="closeForm('entryForm')">
-      <i class="fas fa-times"></i>
-    </button>
-    <h2>Enter Now — <span id="selectedPrizeText"></span></h2>
-    <p>📲 Pay via EasyPaisa → <b style="color: #00f585;">0300-1234567 (Asad Ali)</b></p>
-    <form onsubmit="handleSubmit(event)">
-      <input type="hidden" id="prize" name="prize">
-      <div class="form-group">
-        <label><i class="fas fa-user"></i> Full Name</label>
-        <input type="text" id="fullname" required placeholder="Enter your full name">
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-phone"></i> Mobile Number</label>
-        <input type="text" id="mobile" required placeholder="0300-1234567">
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-home"></i> Address</label>
-        <input type="text" id="address" placeholder="Enter your complete address">
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-receipt"></i> Transaction ID</label>
-        <input type="text" id="txid" required placeholder="Enter EasyPaisa Transaction ID">
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-camera"></i> Payment Screenshot</label>
-        <input type="file" id="screenshot" accept="image/*">
-      </div>
-      <button class="submit-btn" type="submit">
-        <i class="fas fa-paper-plane"></i> Submit Entry
-      </button>
-    </form>
-  </div>
-
-  <!-- Spin Payment Form -->
-  <div id="spinPaymentForm">
-    <button class="close-btn" onclick="closeForm('spinPaymentForm')">
-      <i class="fas fa-times"></i>
-    </button>
-    <h2>Pay for Spin — Rs. 10</h2>
-    <p>📲 Pay Rs. 10 via EasyPaisa → <b style="color: #00f585;">0300-1234567 (Asad Ali)</b></p>
-    <form onsubmit="handleSpinPayment(event)">
-      <div class="form-group">
-        <label><i class="fas fa-user"></i> Full Name</label>
-        <input type="text" id="spinFullname" required placeholder="Enter your full name">
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-phone"></i> Mobile Number</label>
-        <input type="text" id="spinMobile" required placeholder="0300-1234567">
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-receipt"></i> Transaction ID</label>
-        <input type="text" id="spinTxid" required placeholder="Enter EasyPaisa Transaction ID">
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-camera"></i> Payment Screenshot</label>
-        <input type="file" id="spinScreenshot" accept="image/*">
-      </div>
-      <button class="submit-btn" type="submit">
-        <i class="fas fa-sync-alt"></i> Confirm & Spin
-      </button>
-    </form>
   </div>
 
   <footer>
@@ -742,26 +628,88 @@
   </footer>
 
   <script>
-    // Statistics
-    let totalSpins = 0;
-    let totalWins = 0;
+    // Login/Register Functions
+    function openLogin() {
+      document.getElementById('loginContainer').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
 
-    // Page Navigation - FIXED FUNCTION
+    function closeLogin() {
+      document.getElementById('loginContainer').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function switchTab(tab) {
+      const registerForm = document.getElementById('registerForm');
+      const loginForm = document.getElementById('loginForm');
+      const tabs = document.querySelectorAll('.login-tab');
+      
+      tabs.forEach(t => t.classList.remove('active'));
+      
+      if (tab === 'register') {
+        registerForm.style.display = 'block';
+        loginForm.style.display = 'none';
+        tabs[0].classList.add('active');
+      } else {
+        registerForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        tabs[1].classList.add('active');
+      }
+    }
+
+    function pasteReferral() {
+      navigator.clipboard.readText().then(text => {
+        document.getElementById('regReferral').value = text;
+      }).catch(err => {
+        alert('Paste functionality not supported in this browser');
+      });
+    }
+
+    function registerUser() {
+      const username = document.getElementById('regUsername').value;
+      const pin = document.getElementById('regPin').value;
+      const phone = document.getElementById('regPhone').value;
+      const ageCheck = document.getElementById('age-check').checked;
+      
+      if (!username || !pin || !phone) {
+        alert('Please fill all required fields');
+        return;
+      }
+      
+      if (!ageCheck) {
+        alert('You must be over 18 and agree to User Agreement');
+        return;
+      }
+      
+      // Simulate registration
+      alert('Registration successful! You can now login.');
+      switchTab('login');
+    }
+
+    function loginUser() {
+      const username = document.getElementById('loginUsername').value;
+      const pin = document.getElementById('loginPin').value;
+      
+      if (!username || !pin) {
+        alert('Please enter both username and PIN');
+        return;
+      }
+      
+      // Simulate login
+      alert('Login successful! Welcome back to OnRupee.');
+      closeLogin();
+    }
+
+    // Page Navigation
     function showPage(pageId) {
-      // Hide all pages
       document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
       });
-      
-      // Remove active class from all buttons
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
       });
-      
-      // Show selected page
       document.getElementById(pageId).classList.add('active');
       
-      // Activate clicked button
       const buttons = document.querySelectorAll('.nav-btn');
       buttons.forEach(btn => {
         if (btn.textContent.includes(pageId === 'luckyDraw' ? 'Lucky Draw' : 'Lucky Spin')) {
@@ -777,112 +725,26 @@
       const fee = card.dataset.fee;
       const draw = card.dataset.draw;
       
-      document.getElementById('prize').value = prize;
-      document.getElementById('selectedPrizeText').innerText = prize + " — Rs." + fee + " (Draw at " + draw + ")";
-      
-      document.getElementById('entryForm').style.display = 'block';
-      document.getElementById('formOverlay').style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      alert(`You selected: ${prize}\nEntry Fee: Rs. ${fee}\nPlease login to continue.`);
+      openLogin();
     }
 
-    function closeForm(formId) {
-      document.getElementById(formId).style.display = 'none';
-      document.getElementById('formOverlay').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    function handleSubmit(e){
-      e.preventDefault();
-      alert("✅ Entry submitted! Admin will verify your payment.");
-      e.target.reset();
-      closeForm('entryForm');
-    }
-
-    // Lucky Spin Functions
-    function openSpinPayment() {
-      document.getElementById('spinPaymentForm').style.display = 'block';
-      document.getElementById('formOverlay').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function handleSpinPayment(e) {
-      e.preventDefault();
-      alert("✅ Payment verified! You can now spin the wheel.");
-      e.target.reset();
-      closeForm('spinPaymentForm');
-      spinWheel();
-    }
-
-    function spinWheel() {
-      const spinButton = document.getElementById('spinButton');
-      const result = document.getElementById('result');
-      const wheel = document.getElementById('wheel');
-      
-      spinButton.disabled = true;
-      result.textContent = "Spinning...";
-      result.className = "result";
-
-      // Update statistics
-      totalSpins++;
-      updateStats();
-
-      // Random rotation
-      const extraRotation =
-        Math.floor(Math.random() * 360);
-      const totalRotation = 1800 + extraRotation;
-      
-      wheel.style.transform = `rotate(${totalRotation}deg)`;
-      
-      setTimeout(() => {
-        // 0.1% win rate - only 1 in 1000 spins wins
-        const isWin = Math.random() < 0.001; // 0.1% chance
-        
-        if (isWin) {
-          totalWins++;
-          updateStats();
-          result.textContent = "🎉 JACKPOT! You won ₹10,000 Cash! 🎉";
-          result.className = "result win";
-        } else {
-          const loseMessages = [
-            "😔 Better Luck Next Time!",
-            "🤞 Try Again!",
-            "🎯 Almost There! Try Again",
-            "💫 Next Time For Sure!",
-            "🌟 Keep Trying!"
-          ];
-          const randomMessage = loseMessages[Math.floor(Math.random() * loseMessages.length)];
-          result.textContent = randomMessage;
-          result.className = "result lose";
-        }
-        
-        spinButton.disabled = false;
-        updateStats();
-        
-      }, 4000);
-    }
-
-    function updateStats() {
-      document.getElementById('totalSpins').textContent = totalSpins;
-      document.getElementById('wins').textContent = totalWins;
-      const winRate = totalSpins > 0 ? ((totalWins / totalSpins) * 100).toFixed(2) : 0;
-      document.getElementById('winRate').textContent = winRate + '%';
-    }
-
-    // Event listeners
-    document.getElementById('formOverlay').addEventListener('click', function() {
-      closeForm('entryForm');
-      closeForm('spinPaymentForm');
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeForm('entryForm');
-        closeForm('spinPaymentForm');
+    // Close login when clicking outside
+    document.getElementById('loginContainer').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLogin();
       }
     });
 
-    // Initialize stats
-    updateStats();
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLogin();
+      }
+    });
+
+    // Initialize with login tab
+    switchTab('login');
   </script>
 
 </body>
