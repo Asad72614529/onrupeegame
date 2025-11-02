@@ -325,7 +325,7 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 15px rgba(0, 245, 133, 0.3);
     }
 
-    /* Rest of your existing website styles remain the same */
+    /* Rest of your existing website styles */
     .page {
       display: none;
     }
@@ -454,6 +454,123 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.4);
     }
 
+    /* Form Overlay Styles */
+    .form-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 998;
+    }
+
+    #entryForm { 
+      display: none; 
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 500px; 
+      width: 90%;
+      padding: 30px; 
+      background: linear-gradient(160deg, #0d1b2a, #1e293b); 
+      border-radius: 15px; 
+      border: 2px solid #00f585;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      z-index: 999;
+      animation: formPopUp 0.3s ease;
+    }
+
+    @keyframes formPopUp {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    #entryForm h2 { 
+      text-align: center; 
+      color: #00f585; 
+      font-family: 'Orbitron', sans-serif; 
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 245, 133, 0.5);
+    }
+    
+    .form-group { 
+      margin-bottom: 15px; 
+    }
+    
+    label { 
+      display: block; 
+      margin-bottom: 5px; 
+      color: #aebad4; 
+      font-weight: 600;
+    }
+    
+    input, textarea { 
+      width: 100%; 
+      padding: 12px; 
+      border-radius: 8px; 
+      border: 1px solid #374151; 
+      background: #0d1527; 
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #00f5d4;
+      box-shadow: 0 0 10px rgba(0, 245, 212, 0.3);
+    }
+    
+    .submit-btn { 
+      width: 100%; 
+      padding: 12px; 
+      border: none; 
+      border-radius: 8px; 
+      background: linear-gradient(135deg, #3b82f6, #00f585); 
+      color: #000; 
+      font-weight: 700; 
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #ff6b6b;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 107, 107, 0.1);
+      transform: scale(1.1);
+    }
+    
     footer { 
       text-align: center; 
       padding: 30px 20px; 
@@ -470,6 +587,11 @@
       
       .grid { 
         grid-template-columns: 1fr; 
+      }
+
+      #entryForm {
+        padding: 25px 20px;
+        width: 95%;
       }
 
       .nav {
@@ -555,7 +677,7 @@
         <div class="login-links">
           <a href="#">Forgot PIN?</a>
           <a href="#">Customer Service</a>
-          <a href="#">Register Now</a>
+          <a href="#" onclick="switchTab('register')">Register Now</a>
         </div>
         
         <div class="login-note">
@@ -589,7 +711,7 @@
 
     <main class="container">
       <section class="grid">
-        <!-- Your existing cards here -->
+        <!-- Cash Prize -->
         <article class="card" data-prize="Cash — PKR 1000" data-fee="1" data-draw="1500">
           <div class="image-container">
             <img src="https://i.postimg.cc/mZcbSv6f/cash.jpg" alt="PKR 1000">
@@ -604,148 +726,56 @@
           </div>
         </article>
 
-        <!-- Add other cards as needed -->
-      </section>
-    </main>
-  </div>
+        <!-- Ultra Smart Watch -->
+        <article class="card" data-prize="Ultra Smart Watch" data-fee="2" data-draw="3000">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/J4D5Mz6F/watch.jpg" alt="Ultra Watch">
+          </div>
+          <div class="card-content">
+            <h3>⌚ Ultra Smart Watch</h3>
+            <div class="meta">Entry Fee: Rs. 2 only</div>
+            <div class="draw">🎯 Draw after <b>3000</b> entries</div>
+            <button class="enter-btn" onclick="openFormFor(this)">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
 
-  <!-- Lucky Spin Page -->
-  <div id="luckySpin" class="page">
-    <header>
-      <h1><i class="fas fa-sync-alt"></i> Lucky Spin</h1>
-      <p>🎡 Spin and test your luck!</p>
-    </header>
-    <main class="container">
-      <div style="text-align: center; padding: 100px 20px;">
-        <h2 style="color: #00f585; margin-bottom: 20px;">Lucky Spin Coming Soon!</h2>
-        <p style="color: #cbd5e1;">We're working on an amazing spin experience for you.</p>
-      </div>
-    </main>
-  </div>
+        <!-- LED TV -->
+        <article class="card" data-prize="LED TV" data-fee="5" data-draw="5000">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/Bb1P9XSX/lcd.jpg" alt="LED TV">
+          </div>
+          <div class="card-content">
+            <h3>📺 LED TV 32"</h3>
+            <div class="meta">Entry Fee: Rs. 5 only</div>
+            <div class="draw">🎯 Draw after <b>5000</b> entries</div>
+            <button class="enter-btn" onclick="openFormFor(this)">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
 
-  <footer>
-    <p>© 2025 OnRupee. All rights reserved. | 📞 0300-1234567</p>
-  </footer>
+        <!-- Vivo Y04 -->
+        <article class="card" data-prize="Vivo Y04" data-fee="10" data-draw="3500">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/V62BCy5p/mobile.png" alt="Vivo Y04">
+          </div>
+          <div class="card-content">
+            <h3>📱 Vivo Y04</h3>
+            <div class="meta">Entry Fee: Rs. 10 only</div>
+            <div class="draw">🎯 Draw after <b>3500</b> entries</div>
+            <button class="enter-btn" onclick="openFormFor(this)">
+              <i class="fas fa-ticket-alt"></i> Enter Now
+            </button>
+          </div>
+        </article>
 
-  <script>
-    // Login/Register Functions
-    function openLogin() {
-      document.getElementById('loginContainer').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLogin() {
-      document.getElementById('loginContainer').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    function switchTab(tab) {
-      const registerForm = document.getElementById('registerForm');
-      const loginForm = document.getElementById('loginForm');
-      const tabs = document.querySelectorAll('.login-tab');
-      
-      tabs.forEach(t => t.classList.remove('active'));
-      
-      if (tab === 'register') {
-        registerForm.style.display = 'block';
-        loginForm.style.display = 'none';
-        tabs[0].classList.add('active');
-      } else {
-        registerForm.style.display = 'none';
-        loginForm.style.display = 'block';
-        tabs[1].classList.add('active');
-      }
-    }
-
-    function pasteReferral() {
-      navigator.clipboard.readText().then(text => {
-        document.getElementById('regReferral').value = text;
-      }).catch(err => {
-        alert('Paste functionality not supported in this browser');
-      });
-    }
-
-    function registerUser() {
-      const username = document.getElementById('regUsername').value;
-      const pin = document.getElementById('regPin').value;
-      const phone = document.getElementById('regPhone').value;
-      const ageCheck = document.getElementById('age-check').checked;
-      
-      if (!username || !pin || !phone) {
-        alert('Please fill all required fields');
-        return;
-      }
-      
-      if (!ageCheck) {
-        alert('You must be over 18 and agree to User Agreement');
-        return;
-      }
-      
-      // Simulate registration
-      alert('Registration successful! You can now login.');
-      switchTab('login');
-    }
-
-    function loginUser() {
-      const username = document.getElementById('loginUsername').value;
-      const pin = document.getElementById('loginPin').value;
-      
-      if (!username || !pin) {
-        alert('Please enter both username and PIN');
-        return;
-      }
-      
-      // Simulate login
-      alert('Login successful! Welcome back to OnRupee.');
-      closeLogin();
-    }
-
-    // Page Navigation
-    function showPage(pageId) {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      document.getElementById(pageId).classList.add('active');
-      
-      const buttons = document.querySelectorAll('.nav-btn');
-      buttons.forEach(btn => {
-        if (btn.textContent.includes(pageId === 'luckyDraw' ? 'Lucky Draw' : 'Lucky Spin')) {
-          btn.classList.add('active');
-        }
-      });
-    }
-
-    // Lucky Draw Functions
-    function openFormFor(btn){
-      const card = btn.closest('.card');
-      const prize = card.dataset.prize;
-      const fee = card.dataset.fee;
-      const draw = card.dataset.draw;
-      
-      alert(`You selected: ${prize}\nEntry Fee: Rs. ${fee}\nPlease login to continue.`);
-      openLogin();
-    }
-
-    // Close login when clicking outside
-    document.getElementById('loginContainer').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeLogin();
-      }
-    });
-
-    // Close with Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeLogin();
-      }
-    });
-
-    // Initialize with login tab
-    switchTab('login');
-  </script>
-
-</body>
-</html>
+        <!-- United 70cc Bike -->
+        <article class="card" data-prize="United 70cc" data-fee="50" data-draw="2500">
+          <div class="image-container">
+            <img src="https://i.postimg.cc/fy4mbxr4/bike.png" alt="United 70cc">
+          </div>
+          <div class="card-content">
+            <h3>🏍️ United 70cc</h3>
+            <div class="meta">Entry Fee: Rs. 50 onl
