@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>OnRupee — Prize Game</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,6 +11,8 @@
       margin: 0; 
       padding: 0; 
       box-sizing: border-box; 
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     
     body { 
@@ -18,6 +20,7 @@
       background: linear-gradient(135deg, #0a0f1f, #1a103d); 
       color: #e6eef8; 
       min-height: 100vh;
+      overflow-x: hidden;
     }
     
     /* Navigation */
@@ -25,6 +28,8 @@
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
       padding: 15px 20px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 100;
     }
     
     .nav {
@@ -32,11 +37,12 @@
       margin: 0 auto;
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 20px;
+      flex-wrap: wrap;
     }
     
     .nav-btn {
-      padding: 12px 30px;
+      padding: 12px 25px;
       border: none;
       border-radius: 25px;
       background: rgba(255,255,255,0.1);
@@ -45,6 +51,8 @@
       cursor: pointer;
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
+      font-size: 0.9rem;
+      min-width: 120px;
     }
     
     .nav-btn.active {
@@ -60,6 +68,12 @@
     /* Page Container */
     .page {
       display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     
     .page.active {
@@ -303,13 +317,170 @@
       transform: scale(1.1);
     }
     
-    footer { 
-      text-align: center; 
-      padding: 30px 20px; 
-      color: #94a3b8; 
-      background: #0f172a; 
-      margin-top: 50px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+    /* Flappy Bird Page Styles */
+    #flappyBirdPage .container {
+      max-width: 1000px;
+    }
+    
+    .flappy-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    
+    .game-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .game-header h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #00f585;
+      font-size: 2.5rem;
+      text-shadow: 0 0 20px rgba(0, 245, 133, 0.7);
+      margin-bottom: 10px;
+    }
+    
+    .game-header p {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+    }
+    
+    #gameStats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    
+    .stat-box {
+      background: linear-gradient(145deg, #0d1b2a, #1e293b);
+      padding: 15px 25px;
+      border-radius: 10px;
+      border: 2px solid rgba(0, 245, 212, 0.3);
+      text-align: center;
+      min-width: 150px;
+    }
+    
+    .stat-box h3 {
+      color: #00f585;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+    }
+    
+    #gameCanvas {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      background: linear-gradient(135deg, #1e3a8a, #0ea5e9);
+      border-radius: 15px;
+      border: 3px solid #00f585;
+      box-shadow: 0 10px 40px rgba(0, 245, 133, 0.3);
+      display: block;
+      margin: 0 auto;
+      touch-action: none;
+    }
+    
+    .game-controls {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .game-btn {
+      padding: 15px 35px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      min-width: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    #startGameBtn {
+      background: linear-gradient(135deg, #00f585, #10b981);
+      color: #000;
+    }
+    
+    #restartGameBtn {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+    }
+    
+    .game-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    
+    .game-instructions {
+      background: linear-gradient(145deg, #0d1b2a, #1e293b);
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 30px;
+      border: 2px solid rgba(0, 245, 212, 0.3);
+    }
+    
+    .game-instructions h3 {
+      color: #00f585;
+      margin-bottom: 15px;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .instructions-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    
+    .instruction-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+    }
+    
+    .instruction-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 245, 133, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00f585;
+      font-size: 1.2rem;
+    }
+    
+    .mobile-tap-btn {
+      display: none;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      touch-action: manipulation;
     }
     
     @media (max-width: 768px) {
@@ -327,10 +498,66 @@
       }
 
       .nav {
-        flex-direction: column;
         gap: 10px;
+      }
+      
+      .nav-btn {
+        padding: 10px 20px;
+        min-width: 110px;
+        font-size: 0.8rem;
+      }
+      
+      #gameCanvas {
+        max-width: 95%;
+      }
+      
+      .game-controls {
+        flex-direction: column;
         align-items: center;
       }
+      
+      .game-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .mobile-tap-btn {
+        display: block;
+      }
+      
+      .stat-box {
+        min-width: 120px;
+        padding: 12px 20px;
+      }
+      
+      .stat-value {
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header h1 { 
+        font-size: 1.8rem; 
+      }
+      
+      header p {
+        font-size: 1rem;
+      }
+      
+      .nav-btn {
+        padding: 8px 15px;
+        min-width: 100px;
+        font-size: 0.75rem;
+      }
+    }
+    
+    footer { 
+      text-align: center; 
+      padding: 30px 20px; 
+      color: #94a3b8; 
+      background: #0f172a; 
+      margin-top: 50px;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
   </style>
 </head>
@@ -344,6 +571,9 @@
       </button>
       <button class="nav-btn" id="luckySpinBtn">
         <i class="fas fa-sync-alt"></i> Lucky Spin
+      </button>
+      <button class="nav-btn" id="flappyBirdBtn">
+        <i class="fas fa-gamepad"></i> Flappy Bird
       </button>
     </div>
   </div>
@@ -490,95 +720,54 @@
     </main>
   </div>
 
-  <footer>
-    <p>© 2025 OnRupee. All rights reserved. | 📞 0300-1234567</p>
-  </footer>
+  <!-- Flappy Bird Game Page -->
+  <div id="flappyBirdPage" class="page">
+    <header>
+      <h1><i class="fas fa-gamepad"></i> Flappy Bird Game</h1>
+      <p>🐦 Tap to fly! Avoid the pipes and score high!</p>
+    </header>
 
-  <script>
-    // Page Navigation - COMPLETELY FIXED
-    function showPage(pageId) {
-      // Hide all pages
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
+    <main class="container">
+      <div class="flappy-container">
+        <div class="game-header">
+          <h2>Flappy Bird Challenge</h2>
+          <p>Score as high as you can! Best score will be saved.</p>
+        </div>
+        
+        <div id="gameStats">
+          <div class="stat-box">
+            <h3>Current Score</h3>
+            <div class="stat-value" id="currentScore">0</div>
+          </div>
+          <div class="stat-box">
+            <h3>Best Score</h3>
+            <div class="stat-value" id="bestScore">0</div>
+          </div>
+          <div class="stat-box">
+            <h3>High Score</h3>
+            <div class="stat-value" id="highScore">0</div>
+          </div>
+        </div>
+        
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+        
+        <button class="mobile-tap-btn" id="mobileTapBtn">
+          <i class="fas fa-hand-point-up"></i> TAP TO FLY
+        </button>
+        
+        <div class="game-controls">
+          <button class="game-btn" id="startGameBtn">
+            <i class="fas fa-play"></i> Start Game
+          </button>
+          <button class="game-btn" id="restartGameBtn">
+            <i class="fas fa-redo"></i> Restart Game
+          </button>
+        </div>
+        
+        <div class="game-instructions">
+          <h3><i class="fas fa-info-circle"></i> How to Play</h3>
+          <div class="instructions-list">
+            <div class="instruction-item">
+              <div class="instruction-icon">
+                <i class="fas fa-space-shuttle"></i>
       
-      // Remove active class from all buttons
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      
-      // Show selected page
-      document.getElementById(pageId).classList.add('active');
-    }
-
-    // Lucky Draw Functions - COMPLETELY FIXED
-    function openFormFor(btn){
-      const card = btn.closest('.card');
-      const prize = card.dataset.prize;
-      const fee = card.dataset.fee;
-      const draw = card.dataset.draw;
-      
-      document.getElementById('prize').value = prize;
-      document.getElementById('selectedPrizeText').innerText = prize + " — Rs." + fee + " (Draw at " + draw + ")";
-      
-      // Show form and overlay
-      document.getElementById('entryForm').style.display = 'block';
-      document.getElementById('formOverlay').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeForm() {
-      document.getElementById('entryForm').style.display = 'none';
-      document.getElementById('formOverlay').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    function handleSubmit(e){
-      e.preventDefault();
-      alert("✅ Entry submitted! Admin will verify your payment.");
-      document.getElementById('entryFormElement').reset();
-      closeForm();
-    }
-
-    // Event Listeners - PROPERLY ADDED
-    document.addEventListener('DOMContentLoaded', function() {
-      // Navigation buttons
-      document.getElementById('luckyDrawBtn').addEventListener('click', function() {
-        showPage('luckyDraw');
-        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-        this.classList.add('active');
-      });
-      
-      document.getElementById('luckySpinBtn').addEventListener('click', function() {
-        showPage('luckySpin');
-        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-        this.classList.add('active');
-      });
-
-      // Enter Now buttons
-      document.querySelectorAll('.enter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          openFormFor(this);
-        });
-      });
-
-      // Form close button
-      document.getElementById('closeFormBtn').addEventListener('click', closeForm);
-
-      // Form overlay close
-      document.getElementById('formOverlay').addEventListener('click', closeForm);
-
-      // Form submit
-      document.getElementById('entryFormElement').addEventListener('submit', handleSubmit);
-
-      // Close with Escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closeForm();
-        }
-      });
-    });
-  </script>
-
-</body>
-            </html>
