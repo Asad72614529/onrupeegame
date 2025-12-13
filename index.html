@@ -311,217 +311,6 @@
       margin-top: 50px;
       border-top: 1px solid rgba(255,255,255,0.1);
     }
-
-    /* SPIN WHEEL STYLES - NEW ADDITION */
-    .spin-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-    }
-    
-    .wheel-container {
-      position: relative;
-      width: 350px;
-      height: 350px;
-      margin: 30px auto;
-    }
-    
-    .wheel {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #7c3aed, #06b6d4);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 0 10px rgba(0, 245, 133, 0.3),
-                  0 0 30px rgba(0, 245, 133, 0.5);
-      transition: transform 5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    }
-    
-    .wheel-section {
-      position: absolute;
-      width: 50%;
-      height: 50%;
-      transform-origin: bottom right;
-      left: 0;
-      top: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-      overflow: hidden;
-    }
-    
-    .wheel-section:nth-child(odd) {
-      background: linear-gradient(135deg, #7c3aed, #06b6d4);
-    }
-    
-    .wheel-section:nth-child(even) {
-      background: linear-gradient(135deg, #06b6d4, #00f585);
-    }
-    
-    .wheel-section-content {
-      transform: rotate(45deg);
-      text-align: center;
-      width: 100px;
-    }
-    
-    .wheel-center {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: #0d1b2a;
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      border: 3px solid #00f585;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #00f585;
-      font-weight: bold;
-    }
-    
-    .pointer {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 60px;
-      background: #ff6b6b;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      z-index: 20;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    
-    .spin-btn {
-      margin-top: 40px;
-      padding: 15px 50px;
-      font-size: 1.2rem;
-      background: linear-gradient(135deg, #00f585, #3b82f6);
-      border: none;
-      border-radius: 50px;
-      color: #000;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-      font-family: 'Orbitron', sans-serif;
-    }
-    
-    .spin-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    }
-    
-    .spin-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .result-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .result-content {
-      background: linear-gradient(160deg, #0d1b2a, #1e293b);
-      padding: 40px;
-      border-radius: 15px;
-      text-align: center;
-      max-width: 500px;
-      width: 90%;
-      border: 3px solid #00f585;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-      animation: formPopUp 0.5s ease;
-    }
-    
-    .result-content h2 {
-      color: #00f585;
-      font-family: 'Orbitron', sans-serif;
-      margin-bottom: 20px;
-      font-size: 2rem;
-    }
-    
-    .result-prize {
-      font-size: 1.5rem;
-      margin: 20px 0;
-      color: #ffd700;
-      font-weight: bold;
-    }
-    
-    .result-actions {
-      margin-top: 30px;
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-    }
-    
-    .action-btn {
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .spin-again {
-      background: linear-gradient(135deg, #00f585, #3b82f6);
-      color: #000;
-    }
-    
-    .claim-prize {
-      background: linear-gradient(135deg, #ff6b6b, #ffa500);
-      color: white;
-    }
-    
-    .spin-info {
-      text-align: center;
-      margin-top: 30px;
-      color: #cbd5e1;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .spin-info h3 {
-      color: #00f585;
-      margin-bottom: 15px;
-      font-family: 'Orbitron', sans-serif;
-    }
-    
-    .spin-rules {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-      text-align: left;
-    }
-    
-    .spin-rules ul {
-      padding-left: 20px;
-    }
-    
-    .spin-rules li {
-      margin-bottom: 10px;
-    }
     
     @media (max-width: 768px) {
       header h1 { 
@@ -541,16 +330,6 @@
         flex-direction: column;
         gap: 10px;
         align-items: center;
-      }
-      
-      .wheel-container {
-        width: 300px;
-        height: 300px;
-      }
-      
-      .spin-btn {
-        padding: 12px 40px;
-        font-size: 1.1rem;
       }
     }
   </style>
@@ -696,7 +475,7 @@
     </main>
   </div>
 
-  <!-- Lucky Spin Page - UPDATED WITH WORKING SPIN -->
+  <!-- Lucky Spin Page -->
   <div id="luckySpin" class="page">
     <header>
       <h1><i class="fas fa-sync-alt"></i> Lucky Spin</h1>
@@ -704,50 +483,11 @@
     </header>
 
     <main class="container">
-      <div class="spin-container">
-        <div class="wheel-container">
-          <div class="pointer"></div>
-          <div class="wheel" id="wheel">
-            <!-- Wheel sections will be generated by JavaScript -->
-          </div>
-          <div class="wheel-center">SPIN</div>
-        </div>
-        
-        <button class="spin-btn" id="spinButton">
-          <i class="fas fa-sync-alt"></i> SPIN NOW (Rs. 5)
-        </button>
-        
-        <div class="spin-info">
-          <h3>How to Play?</h3>
-          <p>Pay Rs. 5 via EasyPaisa to 0300-1234567 (Asad Ali) and enter your transaction ID to spin the wheel!</p>
-          
-          <div class="spin-rules">
-            <h4>Spin Rules:</h4>
-            <ul>
-              <li>Each spin costs Rs. 5</li>
-              <li>You can spin multiple times</li>
-              <li>Prizes will be delivered within 7 days</li>
-              <li>All prizes are subject to availability</li>
-              <li>Admin decision will be final</li>
-            </ul>
-          </div>
-        </div>
+      <div style="text-align: center; padding: 100px 20px;">
+        <h2 style="color: #00f585; margin-bottom: 20px;">Lucky Spin Coming Soon!</h2>
+        <p style="color: #cbd5e1;">We're working on an amazing spin experience for you.</p>
       </div>
     </main>
-  </div>
-
-  <!-- Result Modal -->
-  <div class="result-modal" id="resultModal">
-    <div class="result-content">
-      <h2>Congratulations!</h2>
-      <p>You won:</p>
-      <div class="result-prize" id="resultPrize"></div>
-      <p>We'll contact you shortly for prize delivery.</p>
-      <div class="result-actions">
-        <button class="action-btn spin-again" id="spinAgainBtn">Spin Again</button>
-        <button class="action-btn claim-prize" id="claimPrizeBtn">Claim Prize</button>
-      </div>
-    </div>
   </div>
 
   <footer>
@@ -755,7 +495,7 @@
   </footer>
 
   <script>
-    // Page Navigation - COMPLETELY FIXED (SAME AS BEFORE)
+    // Page Navigation - COMPLETELY FIXED
     function showPage(pageId) {
       // Hide all pages
       document.querySelectorAll('.page').forEach(page => {
@@ -764,4 +504,81 @@
       
       // Remove active class from all buttons
       document.querySelectorAll('.nav-btn').forEach(btn => {
- 
+        btn.classList.remove('active');
+      });
+      
+      // Show selected page
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    // Lucky Draw Functions - COMPLETELY FIXED
+    function openFormFor(btn){
+      const card = btn.closest('.card');
+      const prize = card.dataset.prize;
+      const fee = card.dataset.fee;
+      const draw = card.dataset.draw;
+      
+      document.getElementById('prize').value = prize;
+      document.getElementById('selectedPrizeText').innerText = prize + " — Rs." + fee + " (Draw at " + draw + ")";
+      
+      // Show form and overlay
+      document.getElementById('entryForm').style.display = 'block';
+      document.getElementById('formOverlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeForm() {
+      document.getElementById('entryForm').style.display = 'none';
+      document.getElementById('formOverlay').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function handleSubmit(e){
+      e.preventDefault();
+      alert("✅ Entry submitted! Admin will verify your payment.");
+      document.getElementById('entryFormElement').reset();
+      closeForm();
+    }
+
+    // Event Listeners - PROPERLY ADDED
+    document.addEventListener('DOMContentLoaded', function() {
+      // Navigation buttons
+      document.getElementById('luckyDrawBtn').addEventListener('click', function() {
+        showPage('luckyDraw');
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+      });
+      
+      document.getElementById('luckySpinBtn').addEventListener('click', function() {
+        showPage('luckySpin');
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+      });
+
+      // Enter Now buttons
+      document.querySelectorAll('.enter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          openFormFor(this);
+        });
+      });
+
+      // Form close button
+      document.getElementById('closeFormBtn').addEventListener('click', closeForm);
+
+      // Form overlay close
+      document.getElementById('formOverlay').addEventListener('click', closeForm);
+
+      // Form submit
+      document.getElementById('entryFormElement').addEventListener('submit', handleSubmit);
+
+      // Close with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeForm();
+        }
+      });
+    });
+  </script>
+
+</body>
+            </html>
