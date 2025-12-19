@@ -1,460 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>OnRupee — Prize Game</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-    body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0a0f1f,#1a103d);color:#e6eef8;min-height:100vh;overflow-x:hidden}
-    .nav-container{background:linear-gradient(135deg,#7c3aed,#06b6d4);padding:15px 20px;box-shadow:0 5px 20px rgba(0,0,0,0.3);position:relative;z-index:100}
-    .nav{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
-    .nav-btn{padding:10px 22px;border:none;border-radius:25px;background:rgba(255,255,255,0.1);color:white;font-weight:600;cursor:pointer;transition:.3s ease;backdrop-filter:blur(10px);font-size:.9rem}
-    .nav-btn.active{background:#00f585;color:#000;box-shadow:0 0 20px rgba(0,245,133,.5)}
-    .nav-btn:hover{transform:translateY(-2px)}
-    .page{display:none;animation:fadeIn .5s ease}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .page.active{display:block}
-    header{background:linear-gradient(135deg,#7c3aed,#06b6d4);padding:30px 20px;text-align:center;border-bottom:3px solid #00f585;box-shadow:0 5px 20px rgba(0,0,0,0.3)}
-    header h1{font-size:2.5rem;font-family:'Orbitron',sans-serif;color:#fff;text-shadow:0 0 20px #00f5d4,0 0 30px #7c3aed}
-    header p{margin:10px 0 0;font-size:1.1rem;color:#f0f0f0}
-    .container{max-width:1200px;margin:40px auto;padding:0 20px;text-align:center}
-    
-    /* Lucky Draw Styles */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;margin-bottom:50px}
-    .card{background:linear-gradient(145deg,#0d1b2a,#1e293b);border-radius:15px;padding:0;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.5);transition:.3s ease;border:2px solid rgba(0,245,212,.2);overflow:hidden}
-    .card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(0,0,0,0.7),0 0 20px rgba(0,245,212,.3)}
-    .image-container{height:200px;background:#1e293b;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
-    .card img{width:100%;height:100%;object-fit:cover;transition:.3s ease}
-    .card:hover img{transform:scale(1.05)}
-    .card-content{padding:20px}
-    .card h3{margin:15px 0 8px;font-size:1.4rem;color:#00f585;font-family:'Orbitron',sans-serif;text-shadow:0 0 10px rgba(0,245,133,.5)}
-    .meta{font-size:1rem;color:#cbd5e1;margin:8px 0}
-    .draw{margin-top:10px;font-weight:600;color:#ff6b6b;text-shadow:0 0 5px rgba(255,107,107,.3)}
-    .draw b{color:#00f585;text-shadow:0 0 5px rgba(0,245,133,.5)}
-    .enter-btn{margin-top:15px;padding:12px 24px;border:none;border-radius:8px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00f585,#3b82f6);color:#000;transition:.3s ease;box-shadow:0 4px 15px rgba(0,0,0,0.3)}
-    .enter-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 6px 20px rgba(0,0,0,0.4)}
-    
-    /* Form Styles */
-    .form-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);backdrop-filter:blur(5px);z-index:998}
-    #entryForm{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);max-width:500px;width:90%;padding:30px;background:linear-gradient(160deg,#0d1b2a,#1e293b);border-radius:15px;border:2px solid #00f585;box-shadow:0 20px 50px rgba(0,0,0,.8);z-index:999}
-    #entryForm h2{text-align:center;color:#00f585;font-family:'Orbitron',sans-serif;margin-bottom:15px;text-shadow:0 0 10px rgba(0,245,133,.5)}
-    .form-group{margin-bottom:15px}
-    label{display:block;margin-bottom:5px;color:#aebad4;font-weight:600}
-    input,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #374151;background:#0d1527;color:#fff;transition:.3s ease}
-    input:focus,textarea:focus{outline:none;border-color:#00f5d4;box-shadow:0 0 10px rgba(0,245,212,.3)}
-    .submit-btn{width:100%;padding:12px;border:none;border-radius:8px;background:linear-gradient(135deg,#3b82f6,#00f585);color:#000;font-weight:700;cursor:pointer;transition:.3s ease;box-shadow:0 4px 15px rgba(0,0,0,0.3)}
-    .submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.4)}
-    .close-btn{position:absolute;top:15px;right:20px;background:none;border:none;color:#ff6b6b;font-size:1.5rem;cursor:pointer;transition:.3s ease;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-    .close-btn:hover{background:rgba(255,107,107,.1);transform:scale(1.1)}
-    
-    /* Game Styles */
-    #gameCanvasReal{width:100%;max-width:400px;height:auto;background:#4dc0b5;border-radius:15px;border:3px solid #00f585;box-shadow:0 10px 30px rgba(0,245,133,.3);display:block;margin:20px auto;touch-action:none}
-    .game-stats{margin-bottom:15px;font-size:1.2rem}
-    .game-buttons{margin:15px 0;display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
-    .game-btn{padding:12px 24px;border:none;border-radius:8px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00f585,#3b82f6);color:#000;transition:.3s ease;box-shadow:0 4px 15px rgba(0,0,0,0.3)}
-    .game-btn:hover{transform:translateY(-3px)}
-    #mobileTapBtn{margin-top:15px;padding:12px 24px;background:#3b82f6;color:#fff;border:none;border-radius:8px;font-weight:bold;width:200px}
-    
-    @media(max-width:768px){
-      header h1{font-size:2rem}
-      .grid{grid-template-columns:1fr}
-      #entryForm{padding:25px 20px;width:95%}
-      .nav{gap:10px}
-      .nav-btn{padding:8px 16px;font-size:.8rem}
-      #gameCanvasReal{max-width:95%}
-    }
-    
-    @media(max-width:480px){
-      header h1{font-size:1.8rem}
-      header p{font-size:1rem}
-      .nav-btn{padding:6px 12px;font-size:.75rem}
-    }
-    
-    footer{text-align:center;padding:30px 20px;color:#94a3b8;background:#0f172a;margin-top:50px;border-top:1px solid rgba(255,255,255,.1)}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoHub - Upload and Share Videos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #4a00e0, #8e2de2);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #ffdd40;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .auth-btn {
+            background: white;
+            color: #4a00e0;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 50px;
+            margin-left: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-btn:hover {
+            background: #ffdd40;
+        }
+        
+        .main-content {
+            padding: 30px 0;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(74, 0, 224, 0.8), rgba(142, 45, 226, 0.8)), url('https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-4.0.3') center/cover;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .upload-btn {
+            background: #ffdd40;
+            color: #333;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-btn:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+        
+        .ad-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .ad-placeholder {
+            background: #f1f5ff;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 2px dashed #8e2de2;
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-thumbnail {
+            height: 180px;
+            background: #4a00e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .video-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .upload-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 30px 0;
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #4a00e0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: #4a00e0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: #8e2de2;
+        }
+        
+        footer {
+            background: #2d1a69;
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="nav-container">
-    <div class="nav">
-      <button class="nav-btn active" id="luckyDrawBtn"><i class="fas fa-gift"></i> Lucky Draw</button>
-      <button class="nav-btn" id="luckySpinBtn"><i class="fas fa-sync-alt"></i> Lucky Spin</button>
-      <button class="nav-btn" id="flappyBirdRealBtn"><i class="fas fa-dove"></i> Flappy Bird</button>
-    </div>
-  </div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-play-circle"></i>
+                    VideoHub
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Videos</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="auth-btn">Login</button>
+                    <button class="auth-btn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <!-- Lucky Draw Page -->
-  <div id="luckyDraw" class="page active">
-    <header><h1>🎁 Lucky Draw</h1><p>🎯 Choti Entry, Bade Prizes!</p></header>
-    <main class="container">
-      <section class="grid">
-        <!-- Cash Prize -->
-        <article class="card" data-prize="Cash — PKR 1000" data-fee="1" data-draw="1500">
-          <div class="image-container">
-            <img src="https://i.postimg.cc/mZcbSv6f/cash.jpg" alt="PKR 1000">
-          </div>
-          <div class="card-content">
-            <h3>💵 Cash — PKR 1000</h3>
-            <div class="meta">Entry Fee: Rs. 1 only</div>
-            <div class="draw">🎯 Draw after <b>1500</b> entries</div>
-            <button class="enter-btn">
-              <i class="fas fa-ticket-alt"></i> Enter Now
+    <div class="container main-content">
+        <section class="hero">
+            <h1>Upload and Share Your Videos</h1>
+            <p>Share your content with the world and earn revenue through our advertising partners</p>
+            <button class="upload-btn" id="showUploadForm">
+                <i class="fas fa-upload"></i> Upload Video
             </button>
-          </div>
-        </article>
+        </section>
 
-        <!-- Ultra Smart Watch -->
-        <article class="card" data-prize="Ultra Smart Watch" data-fee="2" data-draw="3000">
-          <div class="image-container">
-            <img src="https://i.postimg.cc/J4D5Mz6F/watch.jpg" alt="Ultra Watch">
-          </div>
-          <div class="card-content">
-            <h3>⌚ Ultra Smart Watch</h3>
-            <div class="meta">Entry Fee: Rs. 2 only</div>
-            <div class="draw">🎯 Draw after <b>3000</b> entries</div>
-            <button class="enter-btn">
-              <i class="fas fa-ticket-alt"></i> Enter Now
-            </button>
-          </div>
-        </article>
+        <div class="ad-container">
+            <h3>Advertisement</h3>
+            <div class="ad-placeholder">
+                <p>Adsterra Ad Banner (728x90)</p>
+            </div>
+        </div>
 
-        <!-- LED TV -->
-        <article class="card" data-prize="LED TV" data-fee="5" data-draw="5000">
-          <div class="image-container">
-            <img src="https://i.postimg.cc/Bb1P9XSX/lcd.jpg" alt="LED TV">
-          </div>
-          <div class="card-content">
-            <h3>📺 LED TV 32"</h3>
-            <div class="meta">Entry Fee: Rs. 5 only</div>
-            <div class="draw">🎯 Draw after <b>5000</b> entries</div>
-            <button class="enter-btn">
-              <i class="fas fa-ticket-alt"></i> Enter Now
-            </button>
-          </div>
-        </article>
-
-        <!-- Vivo Y04 -->
-        <article class="card" data-prize="Vivo Y04" data-fee="10" data-draw="3500">
-          <div class="image-container">
-            <img src="https://i.postimg.cc/V62BCy5p/mobile.png" alt="Vivo Y04">
-          </div>
-          <div class="card-content">
-            <h3>📱 Vivo Y04</h3>
-            <div class="meta">Entry Fee: Rs. 10 only</div>
-            <div class="draw">🎯 Draw after <b>3500</b> entries</div>
-            <button class="enter-btn">
-              <i class="fas fa-ticket-alt"></i> Enter Now
-            </button>
-          </div>
-        </article>
-
-        <!-- United 70cc Bike -->
-        <article class="card" data-prize="United 70cc" data-fee="50" data-draw="2500">
-          <div class="image-container">
-            <img src="https://i.postimg.cc/fy4mbxr4/bike.png" alt="United 70cc">
-          </div>
-          <div class="card-content">
-            <h3>🏍️ United 70cc</h3>
-            <div class="meta">Entry Fee: Rs. 50 only</div>
-            <div class="draw">🎯 Draw after <b>2500</b> entries</div>
-            <button class="enter-btn">
-              <i class="fas fa-ticket-alt"></i> Enter Now
-            </button>
-          </div>
-        </article>
-      </section>
-
-      <!-- Form Overlay -->
-      <div class="form-overlay" id="formOverlay"></div>
-
-      <!-- Entry Form -->
-      <div id="entryForm">
-        <button class="close-btn" id="closeFormBtn">
-          <i class="fas fa-times"></i>
-        </button>
-        <h2>Enter Now — <span id="selectedPrizeText"></span></h2>
-        <p>📲 Pay via EasyPaisa → <b style="color: #00f585;">0300-1234567 (Asad Ali)</b></p>
-        <form id="entryFormElement">
-          <input type="hidden" id="prize" name="prize">
-          <div class="form-group">
-            <label><i class="fas fa-user"></i> Full Name</label>
-            <input type="text" id="fullname" required placeholder="Enter your full name">
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-phone"></i> Mobile Number</label>
-            <input type="text" id="mobile" required placeholder="0300-1234567">
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-home"></i> Address</label>
-            <input type="text" id="address" placeholder="Enter your complete address">
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-receipt"></i> Transaction ID</label>
-            <input type="text" id="txid" required placeholder="Enter EasyPaisa Transaction ID">
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-camera"></i> Payment Screenshot</label>
-            <input type="file" id="screenshot" accept="image/*">
-          </div>
-          <button class="submit-btn" type="submit">
-            <i class="fas fa-paper-plane"></i> Submit Entry
-          </button>
+        <!-- ✅ Changed from DIV to FORM -->
+        <form class="upload-form" id="uploadForm" style="display: none;">
+            <h2 class="form-title">Upload Your Video</h2>
+            <div class="form-group">
+                <label for="videoTitle">Video Title</label>
+                <input type="text" id="videoTitle" placeholder="Enter video title" required>
+            </div>
+            <div class="form-group">
+                <label for="videoDescription">Description</label>
+                <textarea id="videoDescription" placeholder="Enter video description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="videoCategory">Category</label>
+                <select id="videoCategory" required>
+                    <option value="">Select Category</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="education">Education</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="music">Music</option>
+                    <option value="sports">Sports</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="videoFile">Select Video File</label>
+                <input type="file" id="videoFile" accept="video/*" required>
+            </div>
+            <button type="submit" class="submit-btn">Upload Video</button>
         </form>
-      </div>
-    </main>
-  </div>
 
-  <!-- Lucky Spin Page -->
-  <div id="luckySpin" class="page">
-    <header><h1>🎡 Lucky Spin</h1><p>Coming Soon...</p></header>
-    <main class="container">
-      <div style="padding:100px 20px;">
-        <h2 style="color:#00f585;margin-bottom:20px;">Lucky Spin Coming Soon!</h2>
-        <p style="color:#cbd5e1;">We're working on an amazing spin experience for you.</p>
-      </div>
-    </main>
-  </div>
+        <h2>Featured Videos</h2>
+        <div class="video-gallery">
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Amazing Nature Compilation</div>
+                    <div class="video-stats">
+                        <span>12K views</span>
+                        <span>3 days ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Cooking Tutorial: Pasta Recipe</div>
+                    <div class="video-stats">
+                        <span>45K views</span>
+                        <span>1 week ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Gaming Highlights - Epic Moments</div>
+                    <div class="video-stats">
+                        <span>102K views</span>
+                        <span>2 weeks ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <!-- Flappy Bird Real Page -->
-  <div id="flappyBirdRealPage" class="page">
-    <header><h1>🎮 Flappy Bird</h1><p>Tap or press Space to Fly!</p></header>
-    <main class="container">
-      <div class="game-stats">
-        <p>Current Score: <b id="currentScore">0</b> | Best: <b id="bestScore">0</b> | High: <b id="highScore">0</b></p>
-      </div>
-      <canvas id="gameCanvasReal" width="400" height="600"></canvas>
-      <div class="game-buttons">
-        <button class="game-btn" id="startGameBtn"><i class="fas fa-play"></i> Start Game</button>
-        <button class="game-btn" id="restartGameBtn"><i class="fas fa-redo"></i> Restart</button>
-      </div>
-      <button id="mobileTapBtn"><i class="fas fa-hand-point-up"></i> TAP TO FLY</button>
-      <div style="margin-top:30px;padding:20px;background:rgba(0,0,0,0.3);border-radius:10px;">
-        <h3 style="color:#00f585;margin-bottom:15px;">🎮 How to Play:</h3>
-        <p><b>Desktop:</b> Press SPACE or CLICK to flap</p>
-        <p><b>Mobile:</b> Tap screen or use TAP button</p>
-        <p><b>Goal:</b> Navigate through pipes without hitting them</p>
-      </div>
-    </main>
-  </div>
+        <div class="ad-container">
+            <h3>Advertisement</h3>
+            <div class="ad-placeholder">
+                <p>Adsterra Ad Banner (728x90)</p>
+            </div>
+        </div>
+    </div>
 
-  <footer>
-    <p>© 2025 OnRupee. All rights reserved. | 📞 0300-1234567</p>
-  </footer>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About VideoHub</h3>
+                    <p>VideoHub is a platform for sharing and discovering great video content from creators around the world.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#" style="color: white;">Home</a></p>
+                    <p><a href="#" style="color: white;">Terms of Service</a></p>
+                    <p><a href="#" style="color: white;">Privacy Policy</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: support@videohub.com</p>
+                    <p>Phone: +1 234 567 8900</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VideoHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-  <script>
-    // Navigation System
-    function showPage(pageId) {
-      // Hide all pages
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
-      
-      // Remove active class from all buttons
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      
-      // Show selected page
-      document.getElementById(pageId).classList.add('active');
-      
-      // Add active class to clicked button
-      document.getElementById(pageId + 'Btn').classList.add('active');
-    }
-
-    // Lucky Draw Functions
-    function openFormFor(btn) {
-      const card = btn.closest('.card');
-      const prize = card.dataset.prize;
-      const fee = card.dataset.fee;
-      const draw = card.dataset.draw;
-      
-      document.getElementById('prize').value = prize;
-      document.getElementById('selectedPrizeText').innerText = prize + " — Rs." + fee + " (Draw at " + draw + ")";
-      
-      // Show form and overlay
-      document.getElementById('entryForm').style.display = 'block';
-      document.getElementById('formOverlay').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeForm() {
-      document.getElementById('entryForm').style.display = 'none';
-      document.getElementById('formOverlay').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      alert("✅ Entry submitted! Admin will verify your payment.");
-      document.getElementById('entryFormElement').reset();
-      closeForm();
-    }
-
-    // Setup Event Listeners for Lucky Draw
-    document.addEventListener('DOMContentLoaded', function() {
-      // Navigation buttons
-      document.getElementById('luckyDrawBtn').addEventListener('click', () => showPage('luckyDraw'));
-      document.getElementById('luckySpinBtn').addEventListener('click', () => showPage('luckySpin'));
-      document.getElementById('flappyBirdRealBtn').addEventListener('click', () => showPage('flappyBirdRealPage'));
-
-      // Lucky Draw buttons
-      document.querySelectorAll('.enter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          openFormFor(this);
+    <script>
+        // Show upload form toggle
+        document.getElementById('showUploadForm').addEventListener('click', function() {
+            const form = document.getElementById('uploadForm');
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+                window.scrollTo({
+                    top: form.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            } else {
+                form.style.display = 'none';
+            }
         });
-      });
 
-      // Form buttons
-      document.getElementById('closeFormBtn').addEventListener('click', closeForm);
-      document.getElementById('formOverlay').addEventListener('click', closeForm);
-      document.getElementById('entryFormElement').addEventListener('submit', handleSubmit);
-
-      // Close with Escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closeForm();
-        }
-      });
-    });
-
-    // 🎮 FLAPPY BIRD REAL GAME
-    const canvas = document.getElementById("gameCanvasReal");
-    const ctx = canvas.getContext("2d");
-    const cw = canvas.width, ch = canvas.height;
-    
-    // Create game elements with fallback colors
-    let gameRunning = false;
-    let bird = { x: 70, y: ch/2, velY: 0, w: 34, h: 24 };
-    let pipes = [];
-    let score = 0;
-    let bestScore = 0;
-    let highScore = localStorage.getItem("flappyHighScore") || 0;
-    let frame = 0;
-    
-    // Game constants
-    const gravity = 0.5;
-    const lift = -8;
-    const pipeGap = 130;
-    const pipeWidth = 60;
-    const pipeSpeed = 2.5;
-    
-    // DOM elements
-    const currentScoreEl = document.getElementById("currentScore");
-    const bestScoreEl = document.getElementById("bestScore");
-    const highScoreEl = document.getElementById("highScore");
-    
-    // Initialize scores
-    highScoreEl.textContent = highScore;
-    bestScoreEl.textContent = bestScore;
-    
-    // Game functions
-    function resetGame() {
-      bird = { x: 70, y: ch/2, velY: 0, w: 34, h: 24 };
-      pipes = [];
-      score = 0;
-      frame = 0;
-      currentScoreEl.textContent = score;
-      bestScoreEl.textContent = bestScore;
-    }
-    
-    function addPipe() {
-      const topHeight = Math.random() * (ch - 200 - 100) + 50;
-      pipes.push({ x: cw, top: topHeight, bottom: topHeight + pipeGap });
-    }
-    
-    function drawGame() {
-      // Clear canvas
-      ctx.clearRect(0, 0, cw, ch);
-      
-      // Draw sky background
-      ctx.fillStyle = "#4dc0b5";
-      ctx.fillRect(0, 0, cw, ch);
-      
-      // Draw clouds
-      ctx.fillStyle = "white";
-      ctx.beginPath();
-      ctx.arc(100 + frame % 200, 80, 25, 0, Math.PI * 2);
-      ctx.arc(130 + frame % 200, 80, 30, 0, Math.PI * 2);
-      ctx.arc(160 + frame % 200, 80, 25, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Draw bird (yellow)
-      ctx.fillStyle = "#FFD700";
-      ctx.fillRect(bird.x, bird.y, bird.w, bird.h);
-      
-      // Bird eye
-      ctx.fillStyle = "white";
-      ctx.fillRect(bird.x + 25, bird.y + 5, 8, 8);
-      ctx.fillStyle = "black";
-      ctx.fillRect(bird.x + 27, bird.y + 7, 4, 4);
-      
-      // Bird beak
-      ctx.fillStyle = "#FF4500";
-      ctx.beginPath();
-      ctx.moveTo(bird.x + 34, bird.y + 12);
-      ctx.lineTo(bird.x + 44, bird.y + 12);
-      ctx.lineTo(bird.x + 34, bird.y + 20);
-      ctx.fill();
-      
-      // Draw pipes
-      for (let i = 0; i < pipes.length; i++) {
-        const p = pipes[i];
-        
-        // Top pipe
-        ctx.fillStyle = "#228B22";
-        ctx.fillRect(p.x, 0, pipeWidth, p.top);
-        
-        // Bottom pipe
-        ctx.fillRect(p.x, p.bottom, pipeWidth, ch - p.bottom);
-        
-        // Pipe edges
-        ctx.fillStyle = "#1E7A1E";
-        ctx.fillRect(p.x - 5, p.top - 20, pipeWidth + 10, 20);
-        ctx.fillRect(p.x - 5, p.bottom, pipeWidth + 10, 20);
-      }
-      
-      // Draw ground
-      ctx.fillStyle = "#8B4513";
-      ctx.fillRect(0, ch - 50, cw, 50);
-      ctx.fillStyle = "#7CFC00";
-      ctx.fillRect(0, ch - 50, cw, 10);
-      
-      // Draw score
-      ctx.fillStyle = "white";
-      ctx.font = "24px Orbitron";
-      ctx.textAlign = "center";
-      ctx.fillText("Score: " + score, cw/2, 40);
-    }
-    
-    function updateGame() {
-      if (!gameRunning) return;
-      
-      frame++;
-      
-      // Update bird physics
-      bird.velY += gravity;
-      bird.y += bird.velY;
-      
-      // Add new pipe
-      if (frame % 100 === 0) {
-        addPipe();
-      }
-      
-      // Update pipes and check collisions
-      for (let i = pipes.length - 1; i >= 0; i--) {
-        const p = pipes[i];
-        p.x -= pipeSpeed;
-        
-        // Check collision
-        if (bird.x + bird.w > p.x && bird.x < p.x + pipeWidth &&
-            (bird.y < p.top || bird.y + bird.h > p.bottom)) {
-          endGame();
-          return;
-        }
-        
-        // Check if passed pipe
-        if (p.x + pipeWidth 
+        // Handle video form submission
+        const videoForm = document.getElementById('uploadForm');
+        videoForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('🎉 Video uploaded successfully! (This is a demo - no actual upload occurred)');
+            videoForm.reset();
+            videoForm.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
